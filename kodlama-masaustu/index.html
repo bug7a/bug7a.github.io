@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Masaüstü Sürüm</title>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- DIŞARIDAN YÜKLENEN KÜTÜPHANE DOSYALARI -->
+        <link rel="stylesheet" type="text/css" href="kutuphane/basic.min.css">
+        <script src="kutuphane/basic.min.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+            
+        // DEĞİŞKENLER
+            
+        var b1;
+        var b2;
+        
+        // ÖZEL FONKSİYONLAR
+            
+        // İlk çalışan fonksiyon.
+        var start = function() {
+
+            page.color = "#D8D8D8";
+
+            b1 = cbox(0, 0, 363, 451);
+            that.round = 13;
+            that.element.style.boxShadow = "0px 0px 60px #14141480";
+            that.center();
+
+            /*
+            // BOX: Altta, kullanım koşulları ve iletişim butonlarının taşıyıcı kutusu.
+            b2 = cbox(0, 0, 363, 60);
+            that.color = "transparent"
+            that.aline(b1, "bottom", 20);
+
+            // BUTTON: Kullanım koşulları butonu.
+            b2.btnInfo = cbtn(0, 0);
+            that.text = "Kullanım Koşulları"
+            that.width = 185;
+            that.color = "transparent";
+            that.minimal = 1;
+            that.fontSize = 14;
+            that.textColor = "gray";
+            that.opacity = 0.8;
+            that.element.classList.add("motion-zoomOnMouseOver-forButtonWithOutWhite");
+            that.color = "transparent"
+            that.onClick(function() {
+                goto_url("https://bugraozden.com/cocuklar-icin-kodlama/gizlilik-politikasi.htm");
+            });
+            that.center("left");
+            */
+
+            b1.imgBack = cimg(0, 0, 363, 451);
+            that.load("box-back.png");
+
+            b1.imgWindows = cimg(24, 231, 315, 94);
+            that.load("btn-windows.png");
+            that.element.classList.add("motion-zoomOnMouseOver-forButtonWithOutWhite");
+            that.onClick(function(self) {
+                download_url("download/kodlama-kurulum.exe");
+            });
+
+            b1.imgMacOS = cimg(24, 333, 315, 94);
+            that.load("btn-macos.png");
+            that.element.classList.add("motion-zoomOnMouseOver-forButtonWithOutWhite");
+            that.onClick(function(self) {
+                download_url("download/kodlama-mac.zip");
+            });
+
+            page.onResize(refreshPage);
+            
+        }
+        
+        // Her saniye çalışan fonksiyon.
+        var loop = function() {
+                        
+            
+        }
+        
+        
+        // DİĞER FONKSİYONLAR
+        
+        var refreshPage = function() {
+            
+            b1.center();
+            // b2.aline(b1, "bottom", 20);
+            
+        }
+
+        var goto_url = function(url) {
+
+            window.open(url, "_blank");
+
+        }
+
+        var download_url = function(url) {
+
+            window.open(url, "_self");
+
+        }
+
+        </script>
+
+        <style>
+
+            .motion-zoomOnMouseOver-forButtonWithOutWhite {
+
+            transition: transform .5s, opacity .5s, background-color .5s;
+            cursor: pointer;
+
+            } 
+
+            .motion-zoomOnMouseOver-forButtonWithOutWhite:hover {
+
+            transform: scale(1.1) !important;
+
+            } 
+
+            .motion-zoomOnMouseOver-forButtonWithOutWhite:active {
+
+            transform: scale(1) !important;
+
+            }
+
+        </style>
+
+
+
+
+    </head>
+    <body>
+        
+        <!-- HTML içeriği -->
+        
+    </body>
+</html>

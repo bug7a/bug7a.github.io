@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Photo Notes with Password - Mobile Application (Android)</title>
+        
+        <meta charset="UTF-8">
+        <meta name="description" content="Organize photos taken for the purpose of taking notes.">
+        <meta name="keywords" content="Expense, Spending, Expenditure, Outgo, Income, Expenses, Budget, Manager, Android, iOS, Apple, Google, Mobile App, Free, Download, Personal Finance, Money, Tracking, Status">
+        <meta name="author" content="Bugra Ozden">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+        <!-- LIBRARY FILES -->
+        <link rel="stylesheet" type="text/css" href="library/basic.min.css">
+        <script src="library/basic.min.js" type="text/javascript" charset="utf-8"></script>
+
+        <style>
+
+            body {
+                overflow: hidden;
+            }
+
+            .motion-zoomOnMouseOver-forButton {
+
+                transition: transform .5s, opacity .5s, background-color .5s;
+                cursor: pointer;
+
+            } 
+
+            .motion-zoomOnMouseOver-forButton:hover {
+
+                transform: scale(1.05) !important;
+                background-color: #FFFFFF !important;
+                border: 1px solid orangered !important;
+
+            } 
+
+            .motion-zoomOnMouseOver-forButton:active {
+
+                transform: scale(1) !important;
+
+            }
+
+        </style>
+
+        <script>
+            
+        // VARIABLES
+            
+        var myString = ""
+        var myInteger = 0
+        var myFloat = 0.5
+
+        var homePage;
+
+        
+        // SPECIAL FUNCTIONS
+            
+        // First running function.
+        var start = function() {
+
+            page.fit(800);
+            page.color = "whitesmoke";
+
+            // BOX: Home page container.
+            homePage = createBox(0, 0, 800, page.height);
+            that.color = "whitesmoke";
+            //that.color = "#FFD541";
+            that.scrollY = 1;
+            that.center("left");
+
+            // IMAGE: App icon.
+            homePage.imgIcon = createImage(0, 50, 100, 100);
+            homePage.add(that);
+            that.load("assets/logo.png");
+            that.center("left");
+
+            // LABEL: App name.
+            homePage.lblAppName = createLabel(0, 170, 800, 40);
+            homePage.add(that);
+            that.text = "Photo Notes with Password";
+            that.fontSize = 30;
+            that.textAlign = "center";
+            that.element.style.fontFamily = "opensans-bold";
+
+            // LABEL: App description.
+            homePage.lblAppDescription = createLabel(0, 220, 800, "auto");
+            homePage.add(that);
+            that.text = "Organize photos taken for the purpose of taking notes.";
+            that.fontSize = 20;
+            that.textAlign = "center";
+
+            // BOX: Download button group.
+            homePage.boxButtonGroup = createBox(0, 310, 800, 80);
+            homePage.add(that);
+            that.color = "transparent";
+            that.width = 0;
+            that.element.style.overflow = "visible";
+
+            // IMAGE: Android button.
+            homePage.boxButtonGroup.imgAndroidButton = createImage(0, 0, 270, 80);
+            homePage.boxButtonGroup.add(that);
+            that.load("assets/google-white.png");
+            that.border = 1;
+            that.borderColor = "rgba(0, 0, 0, 0.7)";
+            that.round = 6;
+            that.clickable = 1;
+            that.element.style.cursor = "pointer";
+            that.element.classList.add("motion-zoomOnMouseOver-forButton");
+            that.onClick(function() {
+                go("https://play.google.com/store/apps/details?id=com.bugraozden.photo.notes.with.password", "_blank");
+            })
+
+            homePage.boxButtonGroup.width = 270;
+            homePage.boxButtonGroup.center("left");
+
+            // IMAGE: iOS button.
+            /*
+            homePage.boxButtonGroup.imgIOSButton = createImage(270 + 20, 0, 270, 80);
+            homePage.boxButtonGroup.add(that);
+            that.load("assets/apple-white.png");
+            that.border = 1;
+            that.borderColor = "rgba(0, 0, 0, 0.7)";
+            that.round = 6;
+            that.clickable = 1;
+            that.element.style.cursor = "pointer";
+            that.element.classList.add("motion-zoomOnMouseOver-forButton");
+            that.onClick(function() {
+                go("https://play.google.com/store/apps/details?id=com.bugraozden.kby", "_blank");
+            })
+            
+            homePage.boxButtonGroup.width = 270 + 270 + 20;
+            homePage.boxButtonGroup.center("left");
+            */
+
+            // BOX: More description container.
+            homePage.boxMoreDescription = createBox(0, 460, 800, page.height - 500);
+            homePage.add(that);
+            that.color = "transparent";
+            that.scrollY = 1;
+
+            // BOX: Bottom mask for homePage.boxMoreDescription.
+            homePage.boxBottomMask = createBox(0, 0, homePage.width, 50);
+            homePage.add(that);
+            that.element.style.background = "linear-gradient(to top, whitesmoke, whitesmoke, #FFFFFF00)";
+            that.aline(homePage.boxMoreDescription, "bottom", -48);
+            that.border = 0;
+
+            // BOX: Top mask for homePage.boxMoreDescription.
+            homePage.boxTopMask = createBox(0, 0, homePage.width, 50);
+            homePage.add(that);
+            that.element.style.background = "linear-gradient(to bottom, whitesmoke, whitesmoke, #FFFFFF00)";
+            that.aline(homePage.boxMoreDescription, "top", -48);
+            that.border = 0;
+
+            // LABEL: More description.
+            homePage.boxMoreDescription.lblMoreDescription = createLabel(0, 0, 800, "auto");
+            homePage.boxMoreDescription.add(that);
+            that.text = document.getElementById("div-app-description").innerHTML;
+            that.fontSize = 24;
+            that.spaceX = 40;
+            that.spaceY = 40;
+
+            // LABEL: Term of use button.
+            homePage.lblTermOfUseButton = createLabel(0, 0, 800, "auto");
+            homePage.add(that);
+            that.text = "Privacy Policy and Terms of Use";
+            that.bottom = 20;
+            that.fontSize = 14;
+            that.textAlign = "center";
+            that.element.style.cursor = "pointer";
+            that.onClick(function() {
+                go("term-of-use.htm", "_blank");
+            })
+
+
+            page.onResize(pageResized);
+            
+        }
+        
+        // Function running every second.
+        var pageResized = function() {
+
+            page.fit(800);
+
+            homePage.height = page.height;
+            homePage.center("left");
+
+            homePage.boxMoreDescription.height = page.height - 500;
+            homePage.boxBottomMask.aline(homePage.boxMoreDescription, "bottom", -48);
+            
+        }
+        
+        
+        // OTHER FUNCTIONS
+        
+        var doSomthing1 = function() {
+            
+            
+        }
+        
+        var doSomething2 = function() {
+            
+            
+        }
+
+        </script>
+
+    </head>
+    <body>
+        
+        <!-- HTML content -->
+        <div style="display:none;">
+
+            <div id="div-app-description">
+
+                Do not let the photos you take for the purpose of taking notes get lost in the gallery.<br><br>
+
+                Note-taking Methods:<br>
+                <ul>
+                    <li>Take a photo note from the camera.</li>
+                    <li>Copy the photo note from the gallery.</li>
+                    <li>Download the photo note with the link address.</li>
+                </ul>
+
+                Other Features:<br>
+                <ul>
+                    <li>Photo notes can be protected with a password.</li>
+                    <li>Your photo note categories can customizable.</li>
+                </ul>
+
+            </div>
+
+        </div>
+        
+    </body>
+</html>
