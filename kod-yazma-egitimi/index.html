@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+ 
+<html>
+    <head>
+        
+        <title>Kodlama</title>
+        
+        <meta charset="UTF-8">
+        
+        <meta name="description" content="Çocuklar için kodlama (programlama oyunu)">
+        <meta name="keywords" content="Çocuklar için kodlama (programlama oyunu)">
+        <meta name="author" content="Buğra ÖZDEN">        
+        
+        <meta name="viewport" content="initial-scale=1, width=device-width, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+        <!-- <link rel="stylesheet" type="text/css" href="css/page.css"> -->
+
+    </head>
+    <body>
+        
+        <script src="cordova.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+<script>
+
+var Page = function(){};
+
+//App.js içerisinden sayfa yüklendiğinde otomatik çalıştırılıyor.
+Page.init = function() {
+    
+    console.log("MOBİL UYGULAMA ÇALIŞMAYA BAŞLADI -->");
+    
+    switch (App.os) {
+            
+        case "android":
+            //storage.removeItem("global-last-url");
+            App.gotoLastPage();
+            break;
+        case "browser":
+        case "electron":
+        case "ios":
+            //storage.removeItem("global-last-url");
+            //App.gotoLastPage();
+            //storage.removeItem("global-last-url");
+            //App.gotoLastPage();
+            //window.location.href = "basic/20-mobil-uygulama-sablon.htm";
+            window.location.href = "pages/home.html";
+            //window.location.href = "lessons2/textbox-object.htm";
+            //window.location.href = "test.htm";
+            //window.location.href = "editor2/index.html";
+            //window.location.href = "https://ace.c9.io/";
+            //window.location.href = "https://bugraozden.com/cocuklar-icin-kodlama/lessons1/lesson5.htm"
+            //window.open("https://ace.c9.io/", '_self');
+            //window.open("https://ace.c9.io/", '_blank');
+            break;
+            
+    }
+    
+    
+}; //Page.init END
+    
+                
+        </script>
+        
+    </body>
+</html>
