@@ -19,12 +19,19 @@ window.onload = function() {
     box.color = '#FFFFFF';
     basic.setDefaultContainerBox(box);
 
+    // UI TITLE: Default values.
+    UITitle.resetDefault();
+    UITitle.default.backgroundColor = "#23ACCF";
+    UITitle.default.borderColor = "rgba(0, 0, 0, 0.4)";
+    UITitle.default.bottomBorder = 2;
+    UITitle.default.width = 600;
     // UI TITLE: Category title.
     box.categoryUITitle = UITitle.create({ 
     title: 'Sulama Sistemi'
     });
     box.add(that);
     that.lblTitle.textAlign = 'center';
+    that.lblTitle.textColor = "rgba(0, 0, 0, 0.7)";
     // Show object:
     that.position = 'relative';
 
@@ -54,7 +61,7 @@ window.onload = function() {
     // UI LEFT TITLE: Dark Mode.
     box.darkModeUILeftTitle = UILeftTitle.create({ 
         title: 'Su Pompası:', 
-        description: 'Çalıştırmak için dokunun.'
+        description: (su_pompasi_acik == 0) ? 'Çalıştırmak için dokunun.' : 'Kapatmak için dokunun.'
     });
     //box.add(that);
     // Show
@@ -65,7 +72,7 @@ window.onload = function() {
         uiLeftTitle: box.darkModeUILeftTitle,
         toggleId: 'isDarkModeOn'
     }, function setCustomStyle() {
-        UIToggle.default.backgroundOnColor = 'indianred';
+        UIToggle.default.backgroundOnColor = '#23ACCF';
     });
 
     // B. APPEARANCE:
@@ -106,7 +113,7 @@ window.onload = function() {
     that.color = '#689BD2';
     that.colorData = 4;
     that.border = 1;
-    that.borderColor = 'gray';
+    that.borderColor = "rgba(0, 0, 0, 0.8)";;
     that.round = 4;
 
     box.colorLeftTitle.boxPrimaryColor.lbl = createLabel();
