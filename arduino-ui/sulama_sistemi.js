@@ -9,6 +9,7 @@ window.onload = function() {
 
     page.fit(600);
 
+    defaultView.default.showWithMotion = 0;
     defaultView.create();
     smallView.create();
 
@@ -453,7 +454,12 @@ settingsPage.setValue = function(id, value) {
 
 settingsPage.getValue = function(id) {
 //return global.settings[id];
-return 0;
+    if(id == isDarkModeOn) {
+        return su_pompasi_acik;
+    } else {
+        return 0;
+    }
+
 }
 
 settingsPage.updateInfo_videoQuality = function() {
