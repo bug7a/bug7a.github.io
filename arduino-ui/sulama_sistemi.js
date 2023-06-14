@@ -454,7 +454,7 @@ settingsPage.setValue = function(id, value) {
 
 settingsPage.getValue = function(id) {
 //return global.settings[id];
-    if(id == isDarkModeOn) {
+    if(id == "isDarkModeOn") {
         return su_pompasi_acik;
     } else {
         return 0;
