@@ -373,6 +373,12 @@ switch(uiToggle.toggleId) {
 
     case 'isDarkModeOn':
         // Do something.
+        if(uiToggle.getValue()) {
+            basic.go("/PO1=ON");
+        } else {
+            basic.go("/PO1=OFF");
+        }
+        
         break;
 
     case 'isDownloadWiFiOnlyOn':
