@@ -129,7 +129,7 @@ window.onload = function() {
     //that.color = global.settings.selectedColor || '#689BD2';
     //that.colorData = global.settings.selectedColor || '#689BD2';
     that.color = '#689BD2';
-    that.colorData = 4;
+    that.colorData = sulama_araligi;
     that.border = 1;
     that.borderColor = "rgba(0, 0, 0, 0.8)";;
     that.round = 4;
@@ -156,6 +156,7 @@ window.onload = function() {
             //boxPrimaryColor.color = color;
             boxPrimaryColor.colorData = color;
             checkPrimaryColor(boxPrimaryColor);
+            send_data("http://192.168.1.100/DA1=" + color);
             //global.settings.selectedColor = color;
             //saveGlobal();
 
@@ -180,7 +181,7 @@ window.onload = function() {
     settingsPage.createUIStepperInLeftTitle({
 
         uiLeftTitle: box.fontSizeUILeftTitle,
-        stepperId: 'fontSize'
+        stepperId: 'SN1'
 
     }, function setCustomStyle() {
 
@@ -196,12 +197,12 @@ window.onload = function() {
 
     });
 
-    box.fontSizeUILeftTitle.uiStepper.setValue(10);
+    //box.fontSizeUILeftTitle.uiStepper.setValue(10);
 
     // UI LEFT TITLE: Font size.
     box.sonSulamaUILeftTitle = UILeftTitle.create({
         title: 'Son Sulama:',
-        description: '2 gün, 3 saat önce yapıldı.' 
+        description: son_sulama_aciklama
     });
     //box.add(that);
     that.position = 'relative';
@@ -475,8 +476,9 @@ settingsPage.setValue(uiStepper.stepperId, uiStepper.getValue());
 
 switch(uiStepper.stepperId) {
 
-    case 'fontSize':
+    case 'SN1':
         // Do something.
+        send_data("http://192.168.1.100/SN1=" + uiStepper.getValue());
         break;
 
 }
@@ -492,10 +494,12 @@ settingsPage.setValue = function(id, value) {
 
 settingsPage.getValue = function(id) {
 //return global.settings[id];
-    if(id == "PO1") {
+    if (id == "PO1") {
         return pompa1_status_setting;
-    } if (id == "LE1") {
+    } else if (id == "LE1") {
         return led_status_setting;
+    } else if (id == "SN1") {
+        return sulama_suresi;
     } else {
         return 0;
     }
