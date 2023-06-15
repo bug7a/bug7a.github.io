@@ -161,6 +161,7 @@ window.onload = function() {
             boxPrimaryColor.colorData = color;
             checkPrimaryColor(boxPrimaryColor);
             send_data("http://192.168.1.100/DA1=" + color);
+            settingsPage.box.sonSulamaUILeftTitle.lblDescription.text = "Yakın zaman önce başladı.";
             //global.settings.selectedColor = color;
             //saveGlobal();
 
@@ -205,7 +206,7 @@ window.onload = function() {
 
     // UI LEFT TITLE: Font size.
     box.sonSulamaUILeftTitle = UILeftTitle.create({
-        title: 'Son Sulama:',
+        title: 'Sayaç:',
         description: son_sulama_aciklama
     });
     //box.add(that);
@@ -407,6 +408,7 @@ switch(uiToggle.toggleId) {
             //basic.go("/PO1=ON");
             send_data("http://192.168.1.100/PO1=ON");
             settingsPage.box.darkModeUILeftTitle.lblDescription.text = "Açık";
+            settingsPage.box.sonSulamaUILeftTitle.lblDescription.text = "Yakın zaman önce başladı.";
         } else {
             //basic.go("/PO1=OFF");
             send_data("http://192.168.1.100/PO1=OFF");
