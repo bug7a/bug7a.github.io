@@ -399,9 +399,11 @@ switch(uiToggle.toggleId) {
     case 'PO1':
         // Do something.
         if(uiToggle.getValue()) {
-            basic.go("/PO1=ON");
+            //basic.go("/PO1=ON");
+            send_data("http://192.168.1.100/PO1=ON")
         } else {
-            basic.go("/PO1=OFF");
+            //basic.go("/PO1=OFF");
+            send_data("http://192.168.1.100/PO1=OFF")
         }
         
         break;
@@ -409,9 +411,11 @@ switch(uiToggle.toggleId) {
     case "LE1":
         // Do something.
         if(uiToggle.getValue()) {
-            basic.go("/LE1=ON");
+            //basic.go("/LE1=ON");
+            send_data("http://192.168.1.100/LE1=ON")
         } else {
-            basic.go("/LE1=OFF");
+            //basic.go("/LE1=OFF");
+            send_data("http://192.168.1.100/LE1=OFF")
         }
         
         break;
@@ -650,3 +654,16 @@ selectColorDialog.createColorItem = function(color = 'white') {
     return(item);
 
 };
+
+function send_data(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        // İstek başarılı, response değişkeninde veri bulunuyor.
+      }
+    };
+    xhr.send();
+}
+
