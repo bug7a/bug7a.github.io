@@ -15,6 +15,7 @@ window.onload = function() {
 
     defaultView.clear();
     const box = defaultView.getContainerBox();
+    settingsPage.box = box;
 
     box.color = 'lightblue';
     basic.setDefaultContainerBox(box);
@@ -61,9 +62,10 @@ window.onload = function() {
 
     // UI LEFT TITLE: Dark Mode.
     box.darkModeUILeftTitle = UILeftTitle.create({ 
-        title: 'Su Pompası:', 
-        description: (pompa1_status_setting == 0) ? 'Çalıştırmak için şaltere dokun.' : 'Kapatmak için şaltere dokun.'
+        title: 'Su Pompası', 
+        description: (pompa1_status_setting == 0) ? 'Kapalı' : 'Açık'
     });
+    // description: (pompa1_status_setting == 0) ? 'Çalıştırmak için şaltere dokun.' : 'Kapatmak için şaltere dokun.'
     //box.add(that);
     // Show
     that.position = 'relative';
@@ -78,9 +80,11 @@ window.onload = function() {
 
     // UI LEFT TITLE: Dark Mode.
     box.ledUILeftTitle = UILeftTitle.create({ 
-        title: 'Aydınlatma:', 
-        description: (led_status_setting == 0) ? 'Çalıştırmak için şaltere dokun.' : 'Kapatmak için şaltere dokun.'
+        title: 'LED Aydınlatma', 
+        description: (led_status_setting == 0) ? 'Kapalı' : 'Açık'
     });
+    // box.darkModeUILeftTitle.lblDescription
+    // description: (led_status_setting == 0) ? 'Çalıştırmak için şaltere dokun.' : 'Kapatmak için şaltere dokun.'
     //box.add(that);
     // Show
     that.position = 'relative';
@@ -401,10 +405,12 @@ switch(uiToggle.toggleId) {
         // Do something.
         if(uiToggle.getValue()) {
             //basic.go("/PO1=ON");
-            send_data("http://192.168.1.100/PO1=ON")
+            send_data("http://192.168.1.100/PO1=ON");
+            settingsPage.box.darkModeUILeftTitle.lblDescription.text = "Açık";
         } else {
             //basic.go("/PO1=OFF");
-            send_data("http://192.168.1.100/PO1=OFF")
+            send_data("http://192.168.1.100/PO1=OFF");
+            settingsPage.box.darkModeUILeftTitle.lblDescription.text = "Kapalı";
         }
         
         break;
@@ -413,10 +419,12 @@ switch(uiToggle.toggleId) {
         // Do something.
         if(uiToggle.getValue()) {
             //basic.go("/LE1=ON");
-            send_data("http://192.168.1.100/LE1=ON")
+            send_data("http://192.168.1.100/LE1=ON");
+            settingsPage.box.ledUILeftTitle.lblDescription.text = "Açık";
         } else {
             //basic.go("/LE1=OFF");
-            send_data("http://192.168.1.100/LE1=OFF")
+            send_data("http://192.168.1.100/LE1=OFF");
+            settingsPage.box.ledUILeftTitle.lblDescription.text = "Kapalı";
         }
         
         break;
