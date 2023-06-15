@@ -16,7 +16,7 @@ window.onload = function() {
     defaultView.clear();
     const box = defaultView.getContainerBox();
 
-    box.color = '#FFFFFF';
+    box.color = 'lightblue';
     basic.setDefaultContainerBox(box);
 
     // UI TITLE: Default values.
@@ -49,11 +49,12 @@ window.onload = function() {
     // A. APPEARANCE:
 
     // UI SUB TITLE: APPEARANCE
-    box.appearanceUISubTitle = settingsPage.createRelativeUISubTitle('ELLE SULAMA');
+    //box.appearanceUISubTitle = settingsPage.createRelativeUISubTitle('ELLE SULAMA');
+    box.appearanceUISubTitle = settingsPage.createRelativeUISubTitle('MANUEL');
     //box.add(that);
 
 
-    // A1. Dark Mode: global.settings.isDarkModeOn
+    // A1. Dark Mode: global.settings.PO1
 
     // UI LEFT TITLE: Default values.
     settingsPage.setLeftTitleDefaultValues();
@@ -61,7 +62,7 @@ window.onload = function() {
     // UI LEFT TITLE: Dark Mode.
     box.darkModeUILeftTitle = UILeftTitle.create({ 
         title: 'Su Pompası:', 
-        description: (su_pompasi_acik == 0) ? 'Çalıştırmak için dokunun.' : 'Kapatmak için dokunun.'
+        description: (pompa1_status_setting == 0) ? 'Çalıştırmak için şaltere dokun.' : 'Kapatmak için şaltere dokun.'
     });
     //box.add(that);
     // Show
@@ -70,7 +71,24 @@ window.onload = function() {
     // UI TOGGLE: Dark mode toggle.
     settingsPage.createUIToggleInLeftTitle({
         uiLeftTitle: box.darkModeUILeftTitle,
-        toggleId: 'isDarkModeOn'
+        toggleId: 'PO1'
+    }, function setCustomStyle() {
+        UIToggle.default.backgroundOnColor = '#23ACCF';
+    });
+
+    // UI LEFT TITLE: Dark Mode.
+    box.ledUILeftTitle = UILeftTitle.create({ 
+        title: 'Aydınlatma:', 
+        description: (led_status_setting == 0) ? 'Çalıştırmak için şaltere dokun.' : 'Kapatmak için şaltere dokun.'
+    });
+    //box.add(that);
+    // Show
+    that.position = 'relative';
+
+    // UI TOGGLE: Dark mode toggle.
+    settingsPage.createUIToggleInLeftTitle({
+        uiLeftTitle: box.ledUILeftTitle,
+        toggleId: "LE1"
     }, function setCustomStyle() {
         UIToggle.default.backgroundOnColor = '#23ACCF';
     });
@@ -187,7 +205,6 @@ window.onload = function() {
     });
     //box.add(that);
     that.position = 'relative';
-
 
     // Show view:
     defaultView.setVisible(1);
@@ -379,12 +396,22 @@ settingsPage.setValue(uiToggle.toggleId, uiToggle.getValue());
 
 switch(uiToggle.toggleId) {
 
-    case 'isDarkModeOn':
+    case 'PO1':
         // Do something.
         if(uiToggle.getValue()) {
             basic.go("/PO1=ON");
         } else {
             basic.go("/PO1=OFF");
+        }
+        
+        break;
+
+    case "LE1":
+        // Do something.
+        if(uiToggle.getValue()) {
+            basic.go("/LE1=ON");
+        } else {
+            basic.go("/LE1=OFF");
         }
         
         break;
@@ -461,8 +488,10 @@ settingsPage.setValue = function(id, value) {
 
 settingsPage.getValue = function(id) {
 //return global.settings[id];
-    if(id == "isDarkModeOn") {
-        return su_pompasi_acik;
+    if(id == "PO1") {
+        return pompa1_status_setting;
+    } if (id == "LE1") {
+        return led_status_setting;
     } else {
         return 0;
     }
