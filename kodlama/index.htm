@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yazılım Geliştirme Eğitimi | Çocuklar ve Yeni Başlayanlar İçin Eğlenceli Kodlama</title>
+    <meta name="description" content="Çocuklar ve yazılım geliştirmeye yeni başlayanlar için eğlenceli bir yazılım geliştirme eğitimi. JavaScript ile algoritma geliştirme ve problem çözme becerileri kazanın.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="basic/basic.min.css"> -->
+    <!-- <script src="basic/basic.min.js" type="text/javascript" charset="utf-8"></script> -->
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #BBB6A3;
+            overflow: auto;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                zoom: 0.45;
+            }
+        }
+        @media only screen and (min-width: 601px) {
+            body {
+                zoom: 0.8;
+            }
+        }
+
+        .madimi-one-regular {
+            font-family: "Madimi One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .orange-title {
+            position: relative;
+            background-color: #EE7553;
+            width:67px;
+            height: 40px;
+            font-family: "Madimi One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            text-transform: uppercase;
+            font-size: 24px;
+            overflow: visible;
+            margin-top: 60px;
+        }
+        .orange-title-text {
+            position: absolute;
+            color: #EE7553;
+            font-family: "Madimi One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            text-transform: uppercase;
+            font-size: 24px;
+            white-space: nowrap;
+            padding-left: 77px;
+            padding-top: 4px;
+        }
+        .space1 {
+            position: relative;
+            background-color: transparent;
+            height: 20px;
+        }
+        .normal-text {
+            position: relative;
+            background-color: transparent;
+            width:774px;
+            height: auto;
+            font-family: Helvetica, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 24px;
+            color: #4A4A4A;
+            margin-left: 77px;
+            margin-top: 30px;
+        }
+        .iban-text {
+            position: absolute;
+            top:148px;
+            left:77px;
+            background-color: #FFFFFF;
+            border:#EE7553 3px solid;
+            padding: 22px;
+            border-radius: 8px;
+            font-family: Helvetica, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 24px;
+            text-align: center;
+        }
+
+    </style>
+    <script>
+        
+        // VARIABLES            
+        let myString = "";
+        let myInteger = 0;
+        let myFloat = 0.5;
+
+        // First running function.
+        window.onload = function() {
+
+            //page.fit(1440, 1000);
+            
+        }
+        
+        // Function running every second.
+        const loop = function() {
+                        
+        }
+        
+        // OTHER FUNCTIONS
+        const showIbanInfo = function() {
+            document.getElementById("iban-text-elem").style.display = "block";
+        };
+        
+        const doSomething2 = function() {
+            
+        };
+
+        </script>
+        <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=67e970a2bc16930012085b78&product=sticky-share-buttons&source=platform" async="async"></script>
+</head>
+<body>
+    <div style="background-color:transparent;width:100%;height:auto;position: relative;">
+
+        <div style="position:relative;background-color: white;width:1440px;height: auto;margin-left: auto;margin-right: auto;border-radius: 4px;">
+
+            <div style="position:relative;background-color: transparent;width:100%;height: 112px;">
+                <image src="images/kodlama-logo.png" style="position:absolute;left:77px;top:30px;width:60px;height:60px;"></image>
+                <div style="position: absolute;left:140px;top:39px;font-size:32px;color:#4A4A4A;text-transform: uppercase;" class="madimi-one-regular">Kod Yazma Eğitimi</div>
+                <div style="position: absolute;right:77px;top:44px;font-size:24px;color:#EE7553;text-transform: uppercase;" class="madimi-one-regular">"Kod yazmak, eğlenceli bir hobi olabilir."</div>
+            </div>
+
+            <div style="position:relative;background-color: #F6F6F6;width:100%;height: 500px;border-top: 2px solid rgba(0, 0, 0, 0.1)">
+
+                <div class="normal-text" style="margin-top: 100px;">
+                    Bu eğitim; çocuklara, gerçek bir programlama dili <b>(JavaScript)</b><br>kullanarak, <b>algoritma geliştirme</b> ve <b>problem çözme</b> deneyimi<br>kazandırmak için tasarlanmıştır.<br><br>
+                    Eğlenceli ve daha akılda kalıcı olması için; bulmaca oyunu tarzında<br>simülasyonlar ile, <b>yazılım geliştirmenin *temellerini</b> öğretir.
+                </div>
+
+                <div class="normal-text" style="margin-top: 50px;">
+                    <a href="https://bug7a.github.io/kodlama-egitimi/" target="_blank">
+                        <image src="images/egitime-basla-btn.png" style="position:relative;width:223px;height:64px;cursor: pointer;"></image>
+                    </a>
+                </div>
+                
+                <div class="normal-text" style="font-size:16px;color:rgba(0, 0, 0, 0.5);">
+                    *Değişken, döngü, koşullu ifade, fonksiyon, dizi ve nesne.
+                </div>
+
+            </div>
+
+            <div style="position:relative;background-color: #FFFFFF;width:100%;height: auto;padding-bottom: 40px;">
+
+                <div class="orange-title"><span class="orange-title-text">Ek bilgi</span></div>
+                <div class="normal-text" style="font-size:22px;">
+                    <b>KİMLER FAYDALANABİLİR?</b><br>
+                    <ul>
+                        <li>İlkokul, ortaokul ve lise öğrencileri.</li>
+                        <li>Hobi olarak, kod yazmak isteyenler.</li>
+                        <li>Programlamaya yeni başlayanlar.</li>
+                        <li>Eğitim içeriği olarak kullanmak isteyen, öğretmen ve ebeveynler.</li>
+                    </ul>
+
+                    <b>FAYDALARINDAN BAZILARI:</b><br>
+                    <ul>
+                        <li>Analitik düşünme becerileri kazandırır.</li>
+                        <li>Dikkati güçlendirir, konsantrasyonu ve yaratıcılığı artırır.</li>
+                        <li>Kod yazarken kullanılan temel mantıkları, erken yaşta kavramasını sağlar.</li>
+                        <li>Robotların çalışma mantığını kavramasına yardımcı olur.</li>
+                        <li>Basit oyun ve uygulamalar geliştirilebilmesi için yol gösterir.</li>
+                    </ul>
+
+                    <b>UYGULAMANIN İÇERİĞİ:</b><br>
+                    <ul>
+                        <li>16 Konu Anlatımı.</li>
+                        <li>90+ Alıştırma, Soru, Görev.</li>
+                        <li>20+ Yazılım Projesi Örneği.</li>
+                        <li>JavaScript Kod Editörü.</li>
+                        <li>İngilizce Kelime Sözlüğü.</li>
+                        <li>4 Zeka Oyunu.
+                    </ul>
+                    <!--
+                    <br>
+                    Hayrını görmenizi dilerim,<br>
+                    İyi çalışmalar.
+                    -->
+                </div>
+
+            </div>
+
+            <div style="position:relative;background-color: #FFFFFF;width:100%;height: auto;padding-bottom: 100px;">
+
+                <div class="orange-title"><span class="orange-title-text">Yorumlar</span></div>
+                <div class="normal-text">
+                    Yorum yapmak için X hesabınız olmalıdır.
+                </div>
+
+                <div class="normal-text">
+                    <blockquote class="twitter-tweet"><p lang="tr" dir="ltr">Sadeleştirilmiş yazılım geliştirme eğitimi <a href="https://t.co/yURo1klQuf">https://t.co/yURo1klQuf</a></p>&mdash; Buğra Özden (@bug7a) <a href="https://twitter.com/bug7a/status/1832037462446682546?ref_src=twsrc%5Etfw">September 6, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+
+            </div>
+
+
+            <div style="position:relative;background-color: #F6F6F6;width:100%;height: 400px;border-top: 2px solid rgba(0, 0, 0, 0.1)">
+
+                <div class="orange-title"><span class="orange-title-text">Örnek Projeler</span></div>
+                <div class="normal-text">
+                    Eğitimi tamamladıktan sonra, örnekleri bilgisayarınıza indirin ve<br>anlatım videolarını izleyin.
+                </div>
+
+                <div class="normal-text" >
+                    <a href="https://github.com/bug7a/basicjs-turkce/" target="_blank">
+                        <image src="images/ornekleri-incele-btn.png" style="position:relative;width:256px;height:64px;cursor: pointer;"></image>
+                    </a>
+                </div>
+
+            </div>
+
+
+            <div style="display:none;position:relative;background-color: #FFFFFF;width:100%;height: auto;padding-bottom: 40px;">
+
+                <div class="orange-title"><span class="orange-title-text">Ödeme</span></div>
+                <div class="normal-text">
+                    Bu eğitimi süresiz deneyebilirsiniz: Almaya karar verdiğinizde,<br>tek seferlik 100TL ödeme yapabilirsiniz. Teşekkürler.
+                </div>
+
+                <div onclick="javascript:showIbanInfo()" class="normal-text" >
+                    <image src="images/iban-goster-btn.png" style="position:relative;width:208px;height:64px;cursor: pointer;"></image>
+                </div>
+
+                <div id="iban-text-elem" class="iban-text" style="display:none;">İş Bankası<br>Buğra Özden<br><b>TR456004545453453453454354</b></div>
+
+            </div>
+
+            <div style="display:none;position:relative;background-color: #FFFFFF;width:100%;height: auto;padding-bottom: 40px;">
+
+                <div class="orange-title"><span class="orange-title-text">Özel Ders</span></div>
+                <div class="normal-text">
+                    İzmir, Karşıyaka bölgesinde özel ders için iletişim kurabilirsiniz.
+                </div>
+
+            </div>
+
+            <div style="position:relative;background-color: #FFFFFF;width:100%;height: auto;padding-bottom: 950px;">
+
+                <div class="orange-title"><span class="orange-title-text">İletişim</span></div>
+                <div class="normal-text">
+                    <image src="images/eposta.png" style="position:relative;width:280px;height:24px;"></image>
+                </div>
+
+            </div>
+
+            <div class="normal-text" style="padding-bottom: 80px;">
+                Copyright © 2020-2024 Buğra Özden | <a href="gizlilik-politikasi.htm" target="_blank">Kullanım Şartları</a>
+            </div>
+
+            <div style="position:absolute;right:77px;top:160px;">
+                <image src="images/kodlama.png" alt="Çocuklar için yazılım geliştirme eğitimi" title="Çocuklar için yazılım geliştirme eğitimi"></image>
+            </div>
+
+            <div style="position:absolute;right:77px;top:535px;">
+                <image src="images/kodlama-2.png" alt="Çocuklar için yazılım geliştirme eğitimi" title="Çocuklar için yazılım geliştirme eğitimi"></image>
+            </div>
+
+            <div style="position:absolute;right:77px;top:1388px;">
+                <image src="images/kodlama-3.png" alt="Çocuklar için yazılım geliştirme eğitimi" title="Çocuklar için yazılım geliştirme eğitimi"></image>
+            </div>
+
+            <div style="position:absolute;right:77px;top:2215px;">
+                <image src="images/kodlama-4.png" alt="Çocuklar için yazılım geliştirme eğitimi" title="Çocuklar için yazılım geliştirme eğitimi"></image>
+            </div>
+
+            <div style="position:absolute;right:77px;top:2624px;">
+                <image src="images/kodlama-5.png" alt="Kodlama" title="Kodlama"></image>
+            </div>
+
+        </div>
+
+    </div>
+    <!--
+    <header>
+        <h1>Kod Yazma Eğitimi</h1>
+        <p>"Kod yazmak, eğlenceli bir hobi olabilir."</p>
+    </header>
+    <div class="container">
+        <div class="section">
+            <p>Bu eğitim; çocuklara, gerçek bir programlama dili (JavaScript) kullanarak, algoritma geliştirme ve problem çözme deneyimi kazandırmak için tasarlanmıştır.</p>
+            <div class="image-placeholder">Görsel Alanı</div>
+        </div>
+        <div class="section">
+            <h2>Kimler Faydalanabilir?</h2>
+            <ul>
+                <li>İlkokul, ortaokul ve lise öğrencileri</li>
+                <li>Hobi olarak kod yazmak isteyenler</li>
+                <li>Programlamaya yeni başlayanlar</li>
+                <li>Eğitim içeriği olarak kullanmak isteyen öğretmenler</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h2>Faydaları</h2>
+            <p>Analitik düşünme becerilerini kazandırır, dikkat ve konsantrasyonu artırır.</p>
+            <div class="image-placeholder">Görsel Alanı</div>
+        </div>
+        <div class="section">
+            <h2>Örnek Projeler</h2>
+            <button>Örnekleri İncele</button>
+            <div class="image-placeholder">Görsel Alanı</div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>İletişim: bugra.ozden@gmail.com</p>
+    </div>
+    -->
+    <div class="sharethis-sticky-share-buttons"></div>
+</body>
+</html>
