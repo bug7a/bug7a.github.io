@@ -1,0 +1,331 @@
+<!-- Bismillah -->
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Personal Expense Book</title>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        
+        <link rel="stylesheet" type="text/css" href="library/basic.min.css">
+        <script src="library/basic.min.js" type="text/javascript" charset="utf-8"></script>
+       
+        <!--
+        <link rel="stylesheet" type="text/css" href="library/v1.6.4/basic.min.css">
+        <script src="library/v1.6.4/basic.min.js" type="text/javascript" charset="utf-8"></script>
+        -->
+
+        <script src="cordova.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="js/global.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/lang.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="js/components/ui-click-effect.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/components/ui-search-box.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/components/ui-item-list.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/components/ui-progress-bar.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/components/ui-close-button.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/components/ui-web-view.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="js/shared.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/usage-limit.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="js/views/default-view.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/views/second-view.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/views/small-view.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/ui-numeric-keyboard.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/views/loading-view.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/views/add-spending-view.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="js/ui-period-bar.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/ui-bottom-tab-bar.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/database.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="js/pages/default/home-page.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/pages/default-tab/status-tab-page.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/pages/default-tab/transaction-tab-page.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/pages/default-tab/setting-tab-page.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/pages/small/edit-budget-page.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/pages/second/edit-category-page.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/pages/second/about-page.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/pages/second/guide-page.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/pages/second/payment-page.js" type="text/javascript" charset="utf-8"></script>
+ 
+        <style>
+
+            body {
+                overflow: hidden;
+            }
+
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                color: rgba(0, 0, 0, 0);
+                opacity: 1;
+                display: block;
+                background: url(images/date-icon.svg) no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+                background-size: cover;
+                font-family: axiforma;
+                opacity: 0;
+            }
+
+        </style>
+        
+        <script>
+
+        /*
+
+        APP:
+
+        Personal Budget Managment v2.0.0
+
+        TEMPLATE:
+
+        CORDOVA MOBILE APP (for ANDROID and iOS PLATFORMS) v1.0.2
+        https://bug7a.github.io/cordova-mobile-app-ui-template/
+            
+        This template, can be used to develop mobile applications
+        with Apache Cordova or similar technology.
+        https://cordova.apache.org/
+
+        How to make an Android application? (Language: Turkish)
+        https://www.youtube.com/watch?v=B6x7yKhKZbY
+
+        How to make an iOS application? (Language: Turkish)
+        https://www.youtube.com/watch?v=WZZwiI_5WQA
+
+
+        FOR YOUR CORDOVA PROJECT: 
+        - Add these settings to your cordova project config.xml file:
+            <preference name="DisallowOverscroll" value="true" />
+            <preference name="StatusBarOverlaysWebView" value="false" />
+            <preference name="StatusBarStyle" value="darkcontent" />
+            <preference name="Orientation" value="portrait" />
+        - Add these plugins to your cordova project:
+            cordova plugin add cordova-plugin-statusbar --save
+            cordova plugin add cordova-plugin-purchases --save
+
+        */
+
+        var groupViewForBars = null;
+            
+        // First running function:
+        function startApp() {
+
+            // For reseting global variables, run saveGlobal() before loadGlobal():
+            //saveGlobal();
+            //loadGlobal();
+
+            print("App started. Platform: " + shared.getPlatformId());
+            // Siyah tema için iconlar ve progress bar renkleri filtre dışında bırakılmalı.
+            // page.element.style.filter = "invert(100%)";
+
+            // Supports all screen resolutions (Orientation: portrait)
+            page.fit(global.USED_WIDTH, global.MAX_ZOOMABLE_WIDTH);
+            
+            // Settings
+            page.color = "whitesmoke";
+
+            // insert test data:
+            // database.addTestData(1);
+            usageLimit.checkForFirstRun();
+
+            // Clean old datas, save budget.
+            database.check();
+
+            // Shows where did you tap.
+            clickEffect.create();
+            clickEffect.setActive(1);
+            
+            // UI OBJECT: Default page view:
+            defaultView.create();
+
+            // UI OBJECT: Date selection bar at top:
+            periodBar.create();
+
+            // UI OBJECT: Bottom tab bar:
+            bottomTabBar.create();
+            bottomTabBar.onItemClick(function(selectedItem, selectedItemIndex) {
+                openPageByIndex(selectedItemIndex);
+            })
+
+            // UI OBJECT: Safe area for bars:
+            groupViewForBars = createBox(0, 0, global.USED_WIDTH, page.height);
+            that.color = "transparent";
+            that.add(periodBar.getContainerBox());
+            that.add(bottomTabBar.getContainerBox());
+            // You can click content behind the view.
+            that.clickable = 0;
+
+            // UI OBJECT: If you need a view without unload defaultView object:
+            secondView.create();
+
+            // UI OBJECT: Login view:
+            addSpendingView.create();
+            // addSpendingView.addNewData();
+            addSpendingView.onAfterAction(changePeriodBarMonth);
+
+            // UI OBJECT: For small pages, extra info:
+            smallView.create();
+
+            // First load:
+            loadingView.create();
+
+            // Info Box
+            shared.infoBox = shared.createUIInfoBox();
+            // shared.infoBox.showInfo("Loading...<br>Please wait.");
+            
+            defaultView.setTopAndBottomOuterSpaces(0, bottomTabBar.HEIGHT);
+            // Open the home page.
+            homePage.createInDefaultViewAndShow();
+            homePage.openPageByIndex = openPageByIndex;
+            //openPageByIndex(0);
+
+            periodBar.createItemsByDataList(database.getMonthNameAndTitleDataList())
+            periodBar.onItemChange(function(selectedItemIndex, selectedItemData) {
+                setDataOnPages();
+            })
+            periodBar.selectItemByIndex(periodBar.getLastItemIndex())
+            periodBar.setVisible(1)
+
+            // Categoriler düzenlendiğinde, ana sayfayı güncelle:
+            editCategoryPage.onAfterAction(changePeriodBarMonth);
+
+            openPageByIndex(0);
+
+            //page.onResize(pageResized)
+            // Sadece bir sefer hesapla:
+            pageResized();
+
+        }
+
+        function pageResized() {
+
+            // page.fit(global.USED_WIDTH, global.MAX_ZOOMABLE_WIDTH)
+
+            defaultView.getContainerBox().center("left");
+            secondView.getContainerBox().center("left");
+            addSpendingView.getContainerBox().center("left");
+            smallView.box.center("left");
+            defaultView.getContainerBox().color = "transparent"
+
+            // groupViewForBars.height = page.height
+            groupViewForBars.center("left")
+
+        }
+
+        // For tabBar and menuBar objects:
+        function openPageByIndex(selectedItemIndex) {
+
+            switch(selectedItemIndex) {
+                case 0:
+                    homePage.changeTabPageByIndex(selectedItemIndex)
+                    bottomTabBar.selectItemByIndex(selectedItemIndex)
+                    periodBar.setVisible(1)
+                    break
+                case 1:
+                    homePage.changeTabPageByIndex(selectedItemIndex)
+                    bottomTabBar.selectItemByIndex(selectedItemIndex)
+                    periodBar.setVisible(1)
+                    break
+                case 2:
+                    homePage.changeTabPageByIndex(selectedItemIndex)
+                    bottomTabBar.selectItemByIndex(selectedItemIndex)
+                    periodBar.setVisible(0)
+                    break
+                case 3:
+                    //if (usageLimit.isTimeLeft()) {
+                        addSpendingView.addNewData();
+                    //} else {
+                        //paymentPage.createInSecondViewAndShow();
+                    //}
+                    break;
+            }
+
+        }
+
+        function changePeriodBarMonth($newMontNumber) {
+
+                // - Yeni bir kayıt eklendiğinde veya düzenlendiğinde; seçili dönemi (Son kayıta göre) değiştir.
+                // - Eğer kayıt silinmiş ise ve dönemde başka kayıt yok ise, son dönemi göster.
+
+                periodBar.createItemsByDataList(database.getMonthNameAndTitleDataList())
+
+                if ($newMontNumber) {
+                
+                    // Kayıydın düzenlendiği dönem.
+                    periodBar.selectItemByMonthNumber($newMontNumber);
+
+                } else {
+
+                    // Son dönem.
+                    periodBar.selectItemByIndex(periodBar.getLastItemIndex())
+                }
+
+                // Döneme göre sayfayı yenile.
+                setDataOnPages();
+
+        }
+
+        // setDataOnPages
+        function setDataOnPages() {
+
+            var selectedDate = periodBar.getSelectedDate()
+
+            statusTabPage.setData(database.getStatusData(selectedDate))
+            tranTabPage.refresh(database.getTransactioData(selectedDate))
+
+        }
+
+        // Run the startApp() function when the app is ready:
+        shared.cordovaOnDeviceReady(function() {
+            startApp();
+        });
+
+        </script>
+        
+    </head>
+    <body>
+        
+        <!-- HTML MODELS -->
+        <div style="display:none">
+
+            <div id="payment-description">
+                <ul>
+                    <li>Ödeme, <b>Google Play</b> üzerinden güvenli bir şekilde alınır.</li>
+                    <li>Ödeme, tek seferlik çekilir. Otomatik yenilenmez.</li>
+                    <li>Vergi oranı, bulunduğunuz ülkeye göre hesaplanıp;<br>bir sonraki adımda size gösterilir.</li>
+                </ul>
+            </div>
+
+            <div id="payment-description-en">
+                <ul>
+                    <li>Payment receives securely on <b>Google Play</b>.</li>
+                    <li>Payment is withdrawn one time. Does not auto-renew.</li>
+                    <li>The tax rate will calculate according to the country you are in; it will be shown to you in the next step.</li>
+                </ul>
+            </div>
+
+            <div id="ios-payment-description">
+                <ul>
+                    <li>Ödeme, <b>App Store</b> üzerinden güvenli bir şekilde alınır.</li>
+                    <li>Ödeme, tek seferlik çekilir. Otomatik yenilenmez.</li>
+                    <li>Vergi oranı, bulunduğunuz ülkeye göre hesaplanıp;<br>bir sonraki adımda size gösterilir.</li>
+                </ul>
+            </div>
+
+            <div id="ios-payment-description-en">
+                <ul>
+                    <li>Payment receives securely on <b>App Store</b>.</li>
+                    <li>Payment is withdrawn one time. Does not auto-renew.</li>
+                    <li>The tax rate will calculate according to the country you are in; it will be shown to you in the next step.</li>
+                </ul>
+            </div>
+
+        </div>
+        
+    </body>
+</html>
