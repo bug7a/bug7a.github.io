@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <title>Chillsteps Hostel Guide</title>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- , user-scalable=no -->
+
+        <!-- LIBRARY FILES -->
+        <!-- <link rel="preload" href="image.png" as="image"> -->
+        <link rel="preload" href="basic/font/open-sans/OpenSans-Regular.ttf" as="font" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="basic/basic.min.css">
+        <script src="basic/basic.js" type="text/javascript" charset="utf-8"></script>
+        <script src="basic/scroll-bar.min.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- <script src="_component-template.min.js" type="text/javascript" charset="utf-8"></script> -->
+
+        <!-- ALL COMPONENTS IN ONE FILE -->
+        <!-- <script src="components.js" type="text/javascript" charset="utf-8"></script> -->
+
+        <script>
+        
+        // *** VARIABLES:
+        //const compList = []; // When multiple objects are created by code, they can be added to an array.
+        let box;
+
+        // First running function.
+        window.onload = function() {
+
+            page.color = "lightgray";
+
+            page.fit(500);
+
+            box = startBox(0, 0, {
+                width: 500,
+                height: "100%",
+                color: "white",
+                scrollX: 1,
+                scrollY: 1,
+            });
+
+                // GROUP: Autolayout
+                VGroup({
+                    align: "top left",
+                    gap: 12,
+                    height: "auto",
+                });
+
+
+                    VGroup({
+                        align: "top left",
+                        gap: 0,
+                        padding: [12, 20],
+                        fit: 1,
+                    });
+
+                        Button({
+                            text: "Go back to the hostel Chillsteps Webpage",
+                            width: "auto",
+                            height: 24,
+                            fontSize: 14,
+                            minimal: 1,
+                            border: 1,
+                            borderColor: Black(0.2),
+                            color: "white",
+                        });
+                        that.elem.style.marginBottom = "16px";
+
+                        Label({
+                            text: "Chillsteps Hostel",
+                            //padding: [12, 20],
+                            //textColor: "#40A5AF",
+                            //textColor: White(0.9),
+                            textColor: "#588ABE",
+                            //round: 13,
+                        });
+                        that.elem.style.fontFamily = "opensans-bold";
+
+                        Label({
+                            text: "Nearby Places & Routes",
+                            //textColor: "#40A5AF",
+                            //textColor: White(0.9),
+                            textColor: Black(0.4),
+                            //round: 13,
+                            fontSize: 16,
+                        });
+
+                    endGroup();
+
+                    initItem("Bus Stop", "The nearest bus stop is 'Çiftlik Göl Apart Stop', just a 3-minute walk away. You can take any of the small white buses (dolmuş) to reach Fethiye city center.", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/'36.687925,29.099038'/@36.6871937,29.0985442,18.35z/data=!4m12!4m11!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m3!2m2!1d29.0990375!2d36.6879244!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D", "busstop");
+                    initItem("Super Market", "Migros Supermarket is just 800 meters away and remains open until 10:00 PM. Interestingly, they have an in-store bakery where they can bake frozen pizzas for you on the spot!", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/M+Migros,+%C3%87iftlik,+109.+Sk.,+48300+Fethiye%2FMu%C4%9Fla/@36.6838092,29.0967677,16.71z/data=!4m14!4m13!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m5!1m1!1s0x14c04300066d2727:0x730b366b120e67e4!2m2!1d29.098459!2d36.680782!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D");
+                    initItem("Small Market", "There is a small market nearby open until 12:00 AM. It’s perfect for essentials, though it’s a bit more expensive and has a limited selection compared to Migros.", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/%C3%87a%C4%9Flar+Market,+%C3%87iftlik,+Kenan+Evren+Cd.+No:40,+48300+Fethiye%2FMu%C4%9Fla/@36.6842336,29.097568,17.09z/data=!4m14!4m13!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m5!1m1!1s0x14c043c474202e03:0x2c1bf80bb967474a!2m2!1d29.0968481!2d36.6820081!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D");
+                    initItem("Beach", "Çalış Beach is just 1 km away and stretches for 4 km, so it never feels crowded. It’s a perfect spot for swimming, enjoying a drink, and watching a stunning sunset. It has a more local and peaceful vibe; plus, as you walk towards the main promenade, you’ll find plenty of restaurants, cafes, and ATMs.", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/36.6779646,29.093788/@36.6826904,29.095391,16.1z/data=!4m9!4m8!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m0!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D");
+                    initItem("Seaside Restorant", "There is a government-run restaurant right on the beach that offers good value for money. The food is decent and very affordable. Breakfast is served until 11:00 AM, and the kitchen stays open until 6:00 PM. It’s a nice, budget-friendly spot to enjoy a meal by the sea.", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/T.C.+Fethiye+Belediyesi+Halk+Plaj%C4%B1,+Karagedik,+Fethiye+kamp+alan%C4%B1,+Fo%C3%A7a+mahallesi+k%C3%B6%C3%A7ek+mustafa+caddesi,+1104.+Sk.,+48300+Fethiye%2FMu%C4%9Fla/@36.6794152,29.0958994,15.43z/data=!4m15!4m14!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m5!1m1!1s0x14c0434afec9083d:0x4e73cbe4fe1fb16b!2m2!1d29.1021824!2d36.671494!3e2!5i1?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D");
+                    initItem("Bakery", "Öz Karadeniz Taş Ekmek Fırını offers a wide variety of freshly baked breads. You can also find traditional Turkish treats like poğaça (savory pastries), simit (sesame bread rings), and delicious desserts such as baklava.", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/%C3%96z+Karadeniz+Ta%C5%9F+Ekmek+F%C4%B1r%C4%B1n,+%C3%87iftlik,+Atat%C3%BCrk+Blv.,+48300+Fethiye%2FMu%C4%9Fla/@36.688455,29.0940876,16.99z/data=!4m14!4m13!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m5!1m1!1s0x14c0432062ade3e5:0xdfc14c3dde35e8f!2m2!1d29.0933537!2d36.6902906!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D");
+                    initItem("Truck Restorant", "This cozy food truck offers delicious chicken and meatball wraps with a stunning mountain view. It’s the perfect spot for a quick, tasty bite while enjoying the scenery.", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/36.6790701,29.0947735/@36.6827106,29.0946492,16.21z/data=!4m9!4m8!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m0!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D");
+                    initItem("Must-Visit Spots & Things to Do in Fethiye", "Explore the best of the region: From the relaxing shores of Çalış Beach and the historic Old Town, to the iconic Ölüdeniz and the mysterious Kayaköy. For adventure seekers, a 12 Islands Boat Tour or paragliding from Babadağ are absolute musts!", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/36.6790701,29.0947735/@36.6827106,29.0946492,16.21z/data=!4m9!4m8!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m0!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D", "fethiyeguide");
+
+
+                endGroup(); // END GROUP
+
+            endBox();
+
+                        // SCROLL BAR:
+            box.scrollBar = ScrollBar({
+                scrollableBox: box,
+                bar_border: 0,
+                bar_round: 3,
+                bar_borderColor: "rgba(0, 0, 0, 1)",
+                bar_width: 4,
+                bar_mouseOverWidth: 4, //8
+                bar_mouseOverColor: "#373836",
+                bar_opacity: 0.4,
+                bar_mouseOverOpacity: 0.9,
+                bar_padding: 2,
+                bar_color: "#373836",
+                neverHide: 1,
+                showDots: 1,
+            });
+            
+        };
+
+        const initItem = function(title, desc, mapURL, id) {
+
+            VGroup({
+                width: "100%",
+                height: "auto",
+                align: "top left",
+                padding: [12, 8],
+            });
+
+                Label({
+                    text: title,
+                    textColor: "#588ABE",
+                });
+                that.elem.style.fontFamily = "opensans-bold";
+
+                if (desc) {
+                    Label({
+                        text: desc,
+                        fontSize: 16,
+                        textColor: Black(0.6),
+                    });
+                };
+
+                HGroup({
+                    align: "top left",
+                    fit: 1,
+                    gap: 8,
+                    padding: [0, 10],
+                });
+
+                    const buttonStyle = {
+                        fontSize: 16,
+                        color: "whitesmoke",
+                        border: 1,
+                        borderColor: Black(0.2),
+                        minimal: 1,
+                        round: 13,
+                        height: 50,
+                        width: "auto",
+                        padding: [20, 0],
+                    };
+
+                    if (id != "fethiyeguide")  {
+                        Button({
+                            text: "Open Map",
+                            ...buttonStyle,
+                        });
+                        that.on("click", function(self) {
+                            window.open(mapURL, '_blank');
+                        });
+                    }
+
+                    if (id == "busstop") {
+
+                        Button({
+                            text: "View Transport Guide",
+                            ...buttonStyle,
+                        });
+                        that.on("click", function(self) {
+                            window.open("https://www.hostelchillsteps.com/index.php/location/", '_blank');
+                        });
+                    
+                    } else if (id == "fethiyeguide") {
+
+                        Button({
+                            text: "View The Guide",
+                            ...buttonStyle,
+                        });
+                        that.on("click", function(self) {
+                            window.open("https://sites.google.com/view/fethiye-guide/fethiye", '_blank');
+                        });
+                        //https://sites.google.com/view/fethiye-guide/fethiye
+
+                    }
+
+                    /*
+                    Button({
+                        ...buttonStyle,
+                    });
+                    */
+
+                endGroup();
+
+            endGroup();
+
+            page.onResize(function() {
+                page.fit(500);
+            });
+            
+        };
+        
+        const doSomething2 = function() {
+            
+        };
+
+        </script>
+
+    </head>
+    <body>
+        
+        <!-- HTML content -->
+        
+    </body>
+</html>
