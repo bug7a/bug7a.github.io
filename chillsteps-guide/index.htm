@@ -30,7 +30,7 @@
 
             page.color = "lightgray";
 
-            page.fit(500);
+            page.fit(500, 600);
 
             box = startBox(0, 0, {
                 width: 500,
@@ -88,7 +88,7 @@
 
                     endGroup();
 
-                    initItem("Bus Stop", "The nearest bus stop is 'Çiftlik Göl Apart Stop', just a 3-minute walk away. You can take any of the small white buses (dolmuş) to reach Fethiye city center.", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/'36.687925,29.099038'/@36.6871937,29.0985442,18.35z/data=!4m12!4m11!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m3!2m2!1d29.0990375!2d36.6879244!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D", "busstop");
+                    initItem("Bus Stop", "The nearest bus stop is 'Çiftlik Göl Apart Stop', just a 3-minute walk away. You can take any of the small white buses (dolmuş) to reach Fethiye city center. From the final stop, you can easily walk to Fethiye Old Town or catch buses heading to other popular spots like Ölüdeniz and Kayaköy.", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/'36.687925,29.099038'/@36.6871937,29.0985442,18.35z/data=!4m12!4m11!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m3!2m2!1d29.0990375!2d36.6879244!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D", "busstop");
                     initItem("Super Market", "Migros Supermarket is just 800 meters away and remains open until 10:00 PM. Interestingly, they have an in-store bakery where they can bake frozen pizzas for you on the spot!", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/M+Migros,+%C3%87iftlik,+109.+Sk.,+48300+Fethiye%2FMu%C4%9Fla/@36.6838092,29.0967677,16.71z/data=!4m14!4m13!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m5!1m1!1s0x14c04300066d2727:0x730b366b120e67e4!2m2!1d29.098459!2d36.680782!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D");
                     initItem("Small Market", "There is a small market nearby open until 12:00 AM. It’s perfect for essentials, though it’s a bit more expensive and has a limited selection compared to Migros.", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/%C3%87a%C4%9Flar+Market,+%C3%87iftlik,+Kenan+Evren+Cd.+No:40,+48300+Fethiye%2FMu%C4%9Fla/@36.6842336,29.097568,17.09z/data=!4m14!4m13!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m5!1m1!1s0x14c043c474202e03:0x2c1bf80bb967474a!2m2!1d29.0968481!2d36.6820081!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D");
                     initItem("Beach", "Çalış Beach is just 1 km away and stretches for 4 km, so it never feels crowded. It’s a perfect spot for swimming, enjoying a drink, and watching a stunning sunset. It has a more local and peaceful vibe; plus, as you walk towards the main promenade, you’ll find plenty of restaurants, cafes, and ATMs.", "https://www.google.com/maps/dir/Chillsteps+Hostel%26Camping,+%C3%87iftlik+Mahallesi,+Piri+Reis+Caddesi,+%C3%87iftlik,+137.+Sk.+No:7,+48300+Fethiye%2FMu%C4%9Fla/36.6779646,29.093788/@36.6826904,29.095391,16.1z/data=!4m9!4m8!1m5!1m1!1s0x14c043220baf76a1:0x8a1b6026022f2c0b!2m2!1d29.0995007!2d36.6863391!1m0!3e2?entry=ttu&g_ep=EgoyMDI2MDUwMi4wIKXMDSoASAFQAw%3D%3D");
@@ -207,7 +207,7 @@
             endGroup();
 
             page.onResize(function() {
-                page.fit(500);
+                page.fit(500, 600);
             });
             
         };
