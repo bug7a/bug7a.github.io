@@ -1,0 +1,327 @@
+UsersPageDefaults = {
+    color: "black",
+};
+
+const UsersPage = function(params = {}) {
+
+    // BOX: Page container
+    let box = startPage(params, UsersPageDefaults, mainView);
+
+    mainView.setKey(UsersPage.KEY);
+
+    let newId = null;
+    let selectedId = null;
+
+    let titleDataList = [
+        { name: "ID", dataTitle: "id", dataType: "integer", width: 100, shortable: 1 },
+        { name: "NAME", dataTitle: "name", dataType: "string", width: 180, shortable: 1 },
+        { name: "EMAIL", dataTitle: "email", dataType: "string", width: 290, shortable: 0 },
+        { name: "", dataTitle: "active", dataType: "boolean", width: 80, shortable: 0 },
+    ];
+
+    let itemDataList = [
+        { id: 1, name: "Bugra Ozden", desc: "Developer", email: "bugra.ozden@gmail.com", active: 1 },
+        { id: 2, name: "Alper Kaya", desc: "Product Manager", email: "a.kaya@company.net", active: 1 },
+        { id: 3, name: "Murat Demir", desc: "Backend Engineer", email: "mdemir@work.io", active: 0 },
+        { id: 4, name: "Deniz Arslan", desc: "UI/UX Designer", email: "deniz_arslan@studio.com", active: 1 },
+        { id: 5, name: "Nilüfer Çelik", desc: "Data Analyst", email: "n.celik@datahouse.org", active: 1 },
+        { id: 6, name: "Frank Weber", desc: "DevOps Engineer", email: "frank.weber@infrateam.de", active: 0 },
+        { id: 7, name: "Dany Moreau", desc: "Mobile Developer", email: "dmoreau@appworks.fr", active: 0 },
+        { id: 8, name: "Duygu Şahin", desc: "QA Engineer", email: "duygu.sahin@testlab.com", active: 0 },
+        { id: 9, name: "Filiz Yıldız", desc: "Scrum Master", email: "f.yildiz@agile.io", active: 1 },
+        { id: 10, name: "Anka Polat", desc: "System Architect", email: "anka_polat@systems.net", active: 1 },
+        { id: 11, name: "Ceren Aktaş", desc: "Frontend Developer", email: "ceren.aktas@webco.com", active: 1 },
+        { id: 12, name: "Emre Güneş", desc: "Database Administrator", email: "e.gunes@dbworks.org", active: 0 },
+        { id: 13, name: "Selin Koç", desc: "Business Analyst", email: "selin.koc@analytics.io", active: 1 },
+        { id: 14, name: "Tarık Yılmaz", desc: "Cloud Engineer", email: "tarik.yilmaz@cloudbase.co", active: 1 },
+        { id: 15, name: "Yasemin Doğan", desc: "Technical Writer", email: "y.dogan@docshub.net", active: 0 },
+        { id: 16, name: "Kemal Aydın", desc: "Security Specialist", email: "kemal_aydin@securelab.com", active: 1 },
+        { id: 17, name: "Pınar Erdoğan", desc: "HR Manager", email: "p.erdogan@people.io", active: 0 },
+        { id: 18, name: "Baran Çetin", desc: "Full Stack Developer", email: "baran.cetin@devstack.net", active: 1 },
+        { id: 19, name: "Zeynep Karaca", desc: "Marketing Specialist", email: "zkaraca@brandworks.com", active: 1 },
+        { id: 20, name: "Hakan Bulut", desc: "Network Engineer", email: "h.bulut@netcore.org", active: 0 },
+    ];
+
+    box.destroy = function() {
+        box.remove();
+        box = null;
+    };
+
+    const findNextAvailableID = function () {
+
+        if (itemDataList.length === 0) return 1;
+
+        let maxId = 0;
+        for (let i = 0; i < itemDataList.length; i++) {
+            if (itemDataList[i].id > maxId) maxId = itemDataList[i].id;
+        }
+
+        return maxId + 1;
+
+    };
+
+    const updateCustomItemCell = function (itemCell, titleDataIndex, data) {
+
+        // dataTitle: active
+        if (titleDataIndex == 3) {
+
+            if (data == 1) {
+                itemCell.boxCheck.color = T.primary; //"#E7BB67";
+
+            } else {
+                itemCell.boxCheck.color = "white";
+            }
+
+            const _size = itemCell.height - 12;
+
+            itemCell.boxCheck.width = _size;
+            itemCell.boxCheck.height = _size;
+
+        };
+
+    };
+
+    const createCustomItemCell = function (itemCell, titleDataIndex) {
+
+        // CALL ONE TIME
+
+        // dataTitle: active
+        if (titleDataIndex == 3) {
+
+            itemCell.label.visible = 0;
+
+            itemCell.boxCustom = HGroup();
+            itemCell.add(itemCell.boxCustom);
+
+            const _size = itemCell.height - 12;
+
+            itemCell.boxCheck = Box({
+                width: _size,
+                height: _size,
+                border: 1,
+                color: "white",
+                round: 100,
+            });
+            that.elem.style.minHeight = "10px";
+            that.elem.style.minWidth = "10px";
+
+            endGroup();
+
+        };
+
+        return itemCell;
+
+    };
+
+    box.editUser = function(itemData) {
+
+        EditUser({
+            itemData: itemData,
+            onSave: function(itemData) {
+                box.saveItem(itemData);
+                rightView.hide();
+                rightView.clean();
+
+            },
+            onDelete: function(itemData) {
+                box.deleteItem(itemData);
+                rightView.hide();
+                rightView.clean();
+
+            },
+        });
+
+    };
+
+    box.saveItem = function(itemData) {
+
+        selectedId = itemData.id;
+
+        const index = itemDataList.findIndex(function (item) {
+            return item.id === selectedId;
+        });
+
+        if (index !== -1) {
+            itemDataList[index].name = itemData.name;
+            itemDataList[index].email = itemData.email;
+            itemDataList[index].active = itemData.active || 0;
+            smartTable1.setItemDataList(itemDataList);
+        }
+
+    };
+
+    box.deleteItem = function(itemData) {
+
+        selectedId = itemData.id;
+
+        const index = itemDataList.findIndex(function (item) {
+            return item.id === selectedId;
+        });
+
+        if (index !== -1) {
+            itemDataList.splice(index, 1);
+            smartTable1.setItemDataList(itemDataList);
+            //lblStatus.text = "Deleted ID: " + selectedId;
+            //clearForm();
+        }
+
+    };
+
+    HGroup({
+        align: "left center",
+        height: 60,
+        padding: [20, 0],
+    });
+
+        Label({
+            text: "USERS TABLE",
+            textColor: Ink(0.85),
+        });
+
+    endGroup();
+
+    HGroup({
+        align: "right center",
+        height: 60,
+        padding: [42, 0],
+    });
+
+        box.btnAddNew = Button({
+            text: "ADD NEW",
+            fontSize: 16,
+            width: "auto",
+            padding: [20, 0],
+            color: T.primary, // T.primaryActive, // "#344f6c", "#583432", T.primaryActive
+            minimal: 1,
+            round: 100,
+            height: 40,
+            textColor: Ink(0.95),
+            border: 1,
+            borderColor: Ink(0.3),
+        });
+        UI.effectButton(that);
+        that.on("click", function(self, event) {
+
+            let itemData = { id: newId, name: "User " + newId, desc: "desc", email: "user" + newId + "a@test.com", active: 0 };
+            itemDataList.push(itemData);
+            newId++;
+            smartTable1.setItemDataList(itemDataList);
+            box.editUser(itemData);
+
+        });
+
+    endGroup();
+
+    HGroup({
+        align: "top left",
+        padding: [20, 0, 20, 20],
+        top: 60,
+        height: "calc(100% - 60px)",
+    });
+
+        window.smartTable1 = SmartTable({
+            fillTestData: 0,
+            titleDataList: titleDataList,
+            itemDataList: itemDataList,
+            createCustomItemCell: createCustomItemCell,
+            updateCustomItemCell: updateCustomItemCell,
+            sortByTitleIndex: 0,
+            sortDirection: "Z-A", // "A-Z" or "Z-A"
+            invertColor: 0,
+            scrollBarParams: {
+                bar_border: 0,
+                bar_round: 3,
+                bar_borderColor: Ink(0.15),
+                bar_width: 4,
+                bar_mouseOverWidth: 4,
+                bar_mouseOverColor: T.scrollBar,
+                bar_opacity: 0.4,
+                bar_mouseOverOpacity: 0.9,
+                bar_padding: 2,
+                bar_color: T.scrollBar,
+                neverHide: 0,
+                showDots: 0,
+            },
+            // WHY: Kutunun çerçevesi yoktu, alt çizgisi de koyu geliyordu; filtre kutusu alt barda belli olmuyordu.
+            searchInputParams: {
+                width: "50%",
+                height: 34,
+                border: 1,
+                round: 8,
+                color: T.surfaceDeep, // rgba(255,255,255,0.8), rgba(0,0,0,0.1)
+                borderColor: Ink(0.12),
+                borderBottomStyle: "1px solid " + Ink(0.12),
+                textColor: Ink(0.9),
+                placeholderColor: Ink(0.4),
+                searchIconSize: 15,
+                searchIconOpacity: 0.55,
+                placeholderText: "Filter the table",
+                fontSize: 15,
+                invertIconColor: T.invertIcon,
+                searchIconFile: "../../comp-m2/search-input-v2/filter.png",
+                clearIconFile: "../../comp-m2/search-input-v2/clear.svg",
+
+            },
+            // Filtre kutusundaki sütun seçim listesi (ALL) de koyu tema ile açılsın.
+            searchTitleMenuParams: {
+                minWidth: 170,
+                style: {
+                    menu: { color: T.tableFooter, border: 1, borderColor: Ink(0.12), round: 8, padding: 4, shadow: "0 8px 24px " + Black(0.5) },
+                    item: { height: 30, fontSize: 14, textColor: Ink(0.75), color: "transparent", round: 6, padding: 10, gap: 10 },
+                    itemHover: { textColor: "white", color: Ink(0.08) },
+                    disabled: { textColor: Ink(0.3), opacity: 0.4 },
+                    icon: { width: 14, height: 14 },
+                    separator: { color: Ink(0.1), space: 4 },
+                },
+            },
+            style: {
+                width: "100%",
+                height: "100%",
+                round: 6,
+                line1Color: T.tableRow1,
+                line2Color: T.tableRow2,
+                highlightItemCellColor: "#583432", // "#3A3010",
+                highlightTitleCellColor: Ink(0.08),
+                verticalScrollWidth: 20,
+                verticalScrollMargin: 2,
+                btnScrollDownIconFile: "../../comp-m3/smart-table/down.png",
+                btnScrollUpIconFile: "../../comp-m3/smart-table/up.png",
+                btnScrollCenterIconFile: "../../comp-m3/smart-table/scroll.png",
+                sortIconFile: "../../comp-m3/smart-table/sort.png",
+                // WHY: Varsayılan tik ikonu koyu renkli; koyu menüde görünmüyordu.
+                searchTitleCheckIconFile: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke=T.accent stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 7"/></svg>'),
+                loadingIconFile: "../../comp-m3/smart-table/clock.png",
+                invertIconColor: T.invertIcon,
+
+                box: { color: T.tableRow1 },
+                boxBorder: { border: 2, borderColor: Ink(0.15) },
+                boxTitleLine: { color: T.primary },
+                boxTitleCell: { padding: [8, 0], borderRight: "1px solid " + Ink(0.08), borderBottom: "2px solid #FFFFFF44" },
+                lblTitleCell: { fontSize: 20, fontFamily: "opensans", textColor: Ink(0.95), },
+                boxItemCell: { borderBottom: "1px solid " + Ink(0.08), borderRight: "1px solid " + Ink(0.04), padding: [8, 0] },
+                lblItemCell: { fontSize: 20, textColor: Ink(0.75), fontFamily: "opensans" },
+                boxInfoLine: { color: T.tableFooter, borderTop: "1px solid " + Ink(0.08) },
+                lblBoxInfoLine: { fontSize: 14, textColor: Ink(0.6), },
+                lblNoDataFound: { color: "#707070", padding: [8, 2], fontSize: 14, round: 8, border: 1, borderColor: Ink(0.2) },
+                // Filtre kutusunun içindeki sütun etiketi: Kutunun içinde durduğu için daha hafif bir chip.
+                lblSearchTitle: { color: Ink(0.08), textColor: Ink(0.6), padding: [8, 1], fontSize: 12, round: 6, border: 1, borderColor: Ink(0.14) },
+                btnScrollCenter: { color: "#2C2C2C", round: 100, borderColor: Ink(0.2), border: 1 },
+                btnScrollUp: { color: T.surface4, round: 100, border: 1, borderColor: Ink(0.3), },
+                btnScrollDown: { color: T.surface4, round: 100, border: 1, borderColor: Ink(0.3), },
+                boxSort: { color: T.primary },
+
+            },
+        });
+        smartTable1.onSelect = function (itemData) {
+            box.editUser(itemData);
+        };
+
+    endGroup();
+
+    newId = findNextAvailableID();
+    
+    return box.endPage();
+
+};
+
+UsersPage.KEY = "Users";
