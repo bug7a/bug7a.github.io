@@ -132,8 +132,8 @@ Listede olmayan dosyalar ilk kez acildiklarinda onbellege alinir, ama offline il
 2. `icon/` klasorundeki PNG'leri kendi ikonlarinla degistir (ayni isim ve olculerde).
    `icon-maskable-512.png` icin ikonun onemli kismi ortadaki %80'lik dairenin icinde kalmali.
 3. `index.htm`: `<title>` ve `apple-mobile-web-app-title`.
-4. `sw.js`: `CACHE_NAME` on ekini degistirirsen, `activate` icindeki temizleme satirindaki
-   `"mobile-fit-skeleton-"` on ekini de ayni yap.
+4. `sw.js`: `CACHE_NAME` istersen degistirebilirsin, ama zorunlu degil - klasor yoluna gore
+   otomatik farklilasir (bkz. Notlar, `APP_PATH`).
 
 ## Notlar
 
@@ -150,6 +150,11 @@ Listede olmayan dosyalar ilk kez acildiklarinda onbellege alinir, ama offline il
   URL'sini kullanir; sadece ust sayfanin (`destination: "document"`) hicbir kaydi yoksa
   `index.htm`'e duser. Boylece `content/` altindaki sayfa, ust `index.htm`'in onbellegini
   ezmeden dogru sekilde offline'da da acilir.
+- Cache Storage klasore gore degil, **alan adina (origin) gore** ortaktir. Bu proje ile birden
+  fazla site icin uygulama yapip aynen ayni alan adina (ornek: bir GitHub Pages hesabinin farkli
+  repo'lari) kurarsan, `sw.js` icindeki `CACHE_NAME` klasor yoluna gore (`APP_PATH`) otomatik
+  farklilasir; bir uygulamanin `activate` temizligi, digerinin cache'ini silmez. (Farkli alan
+  adlarindaysa bu zaten bir sorun degildi, Cache Storage tamamen ayridir.)
 - `comp/` icindeki bilesenler `../../comp-m4/` kopyalaridir. Ana klasor guncellenince bu kopyalar
   kendiliginden guncellenmez.
 - Sayfa `viewport-fit=cover` ve `env(safe-area-inset-*)` kullanir; boylece tam ekran modda

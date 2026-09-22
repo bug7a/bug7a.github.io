@@ -1,6 +1,6 @@
 /* Bismillah */
 
-// SERVICE WORKER - v1.1.4
+// SERVICE WORKER - v1.1.5
 // Developer: Bugra Ozden
 // NOT: Bu dosya normal sayfa kodundan ayri bir worker icinde calisir.
 //      Burada "window", "document" ve basic.js yoktur.
@@ -11,8 +11,16 @@
 
 // NOT: Yeni bir surum yayinlarken bu numarayi degistir.
 //      Degisince eski cache silinir ve dosyalar yeniden indirilir.
-const CACHE_VERSION = "v1.1.4";
-const CACHE_NAME = "mobile-fit-skeleton-" + CACHE_VERSION;
+const CACHE_VERSION = "v1.1.5";
+
+// APP PATH: sw.js dosyasinin bulundugu klasorun yolu (ornek: "-project1-pwa-example-").
+// NOT: Cache Storage alan adina (origin) gore ortaktir, klasore gore degil. Bu proje ile
+//      ayni alan adina (ornek: bir GitHub Pages hesabinin farkli repo'lari) birden fazla
+//      uygulama kurulursa, CACHE_PREFIX'e eklenen bu yol sayesinde her uygulama otomatik
+//      kendi cache adini kullanir; biri digerinin cache'ini "activate" sirasinda silmez.
+const APP_PATH = self.location.pathname.replace(/[^a-z0-9]/gi, "-");
+const CACHE_PREFIX = "mobile-app" + APP_PATH;
+const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 
 // APP SHELL: Offline calismasi icin gereken dosyalar.
 // NOT: content/ klasorune birden fazla dosyali bir proje eklenirse (kendi css/js/gorsel
@@ -68,7 +76,7 @@ self.addEventListener("activate", function (event) {
 
         const names = await caches.keys();
         await Promise.all(names.map(function (name) {
-            if (name !== CACHE_NAME && name.indexOf("mobile-fit-skeleton-") === 0) {
+            if (name !== CACHE_NAME && name.indexOf(CACHE_PREFIX) === 0) {
                 return caches.delete(name);
             }
         }));
