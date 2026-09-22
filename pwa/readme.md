@@ -145,6 +145,11 @@ Listede olmayan dosyalar ilk kez acildiklarinda onbellege alinir, ama offline il
 - `page.fit()` govdeyi (body) olcekledigi icin, `position: fixed` calisan toast'lar ekranin disina
   dusuyordu. `fitBodyToPage()` govdeyi tasarim olculerine getirir; toast'lar alt ortada kalir.
   (Bu yuzden ikisi de `USE_PAGE_FIT` ile birlikte acilip kapanir.)
+- `WebView`'in `content/index.htm` gibi yerel bir sayfa yuklemesi de tarayici icin bir "navigate"
+  istegidir (iframe icinde olsa da). `sw.js` bu yuzden onbellek anahtari olarak hep istegin kendi
+  URL'sini kullanir; sadece ust sayfanin (`destination: "document"`) hicbir kaydi yoksa
+  `index.htm`'e duser. Boylece `content/` altindaki sayfa, ust `index.htm`'in onbellegini
+  ezmeden dogru sekilde offline'da da acilir.
 - `comp/` icindeki bilesenler `../../comp-m4/` kopyalaridir. Ana klasor guncellenince bu kopyalar
   kendiliginden guncellenmez.
 - Sayfa `viewport-fit=cover` ve `env(safe-area-inset-*)` kullanir; boylece tam ekran modda

@@ -1,6 +1,6 @@
 /* Bismillah */
 
-// SERVICE WORKER - v1.1.3
+// SERVICE WORKER - v1.1.4
 // Developer: Bugra Ozden
 // NOT: Bu dosya normal sayfa kodundan ayri bir worker icinde calisir.
 //      Burada "window", "document" ve basic.js yoktur.
@@ -11,7 +11,7 @@
 
 // NOT: Yeni bir surum yayinlarken bu numarayi degistir.
 //      Degisince eski cache silinir ve dosyalar yeniden indirilir.
-const CACHE_VERSION = "v1.1.3";
+const CACHE_VERSION = "v1.1.4";
 const CACHE_NAME = "mobile-fit-skeleton-" + CACHE_VERSION;
 
 // APP SHELL: Offline calismasi icin gereken dosyalar.
@@ -92,16 +92,25 @@ self.addEventListener("fetch", function (event) {
     if (new URL(request.url).origin !== self.location.origin) return;
 
     // SAYFA ACILISI: Once agdan dene, olmazsa cache'ten ver.
+    // NOT: "navigate" sadece ust pencerenin acilisi degil, WebView icindeki iframe'in yerel bir
+    //      sayfaya (content/index.htm gibi) gecisi de bu moddadir. Onbellek anahtari bu yuzden
+    //      hep istegin kendi URL'si; sadece ust sayfanin (destination "document") hicbir kaydi
+    //      yoksa index.htm'e dusulur. Aksi halde content/ sayfasi index.htm'in ustune yazilirdi.
     if (request.mode === "navigate") {
         event.respondWith((async function () {
             try {
                 const fresh = await fetch(request);
                 const cache = await caches.open(CACHE_NAME);
-                cache.put("./index.htm", fresh.clone());
+                cache.put(request, fresh.clone());
                 return fresh;
             } catch (e) {
-                const cached = await caches.match("./index.htm", { ignoreSearch: true });
-                return cached || Response.error();
+                const cached = await caches.match(request, { ignoreSearch: true });
+                if (cached) return cached;
+                if (request.destination === "document") {
+                    const indexCached = await caches.match("./index.htm", { ignoreSearch: true });
+                    if (indexCached) return indexCached;
+                }
+                return Response.error();
             }
         })());
         return;
