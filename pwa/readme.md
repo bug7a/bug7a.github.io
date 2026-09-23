@@ -17,6 +17,9 @@ Written with basic.js; no build tool or package manager required.
 1. **`index.htm` > settings**:
    - `APP_ID`: a short name unique to your app (e.g. `"expense"`).
    - `CONTENT_URL`: the site address to show (`"https://..."`) or a local page (`"content/index.htm"`).
+   - `THEME`: `"dark"` (default) or `"light"`. The colors of each theme are in `THEMES`. With
+     `"light"`, also set `background_color` and `theme_color` in `manifest.webmanifest` to `THEMES.light.page`
+     (the splash screen of the installed app).
    - `<title>` and `apple-mobile-web-app-title`: the name of the app.
 2. **`manifest.webmanifest`**: `name`, `short_name`, `description`, `theme_color`, `background_color`.
 3. **`icon/`**: replace the PNGs with your own icons (same names and sizes).
@@ -169,6 +172,10 @@ Files not in the list are cached the first time they are opened, but they are mi
   own URL as the cache key, and only falls back to `index.htm` when the top page
   (`destination: "document"`) has no entry at all. This way the `content/` page never overwrites
   the cached `index.htm`.
+- **Theme**: the theme color is given to `<html>` by a script in `<head>`, before anything is drawn,
+  so the dark theme never shows a white frame while the app opens. A local page gets the theme in its
+  address (`content/index.htm?theme=dark`) and draws itself in the same colors; a site address is
+  loaded as it is, so a site with a white background still shows white.
 - **Notch and bottom bar**: the page uses `viewport-fit=cover` and `env(safe-area-inset-*)`; in
   full-screen mode the content does not go under the phone's notch or bottom bar.
 - **Copies**: `basic/` and `comp/` are copies of the main folders (`../../basic/`, `../../comp-m4/`)
@@ -195,6 +202,9 @@ basic.js ile yazilmistir, build araci veya paket yoneticisi gerektirmez.
 1. **`index.htm` > ayarlar**:
    - `APP_ID`: uygulamana ozel kisa bir ad (ornek: `"expense"`).
    - `CONTENT_URL`: gosterilecek site adresi (`"https://..."`) ya da yerel sayfa (`"content/index.htm"`).
+   - `THEME`: `"dark"` (varsayilan) veya `"light"`. Her temanin renkleri `THEMES` icindedir. `"light"`
+     secersen `manifest.webmanifest` icindeki `background_color` ve `theme_color`'i de `THEMES.light.page`
+     yap (kurulu uygulamanin acilis ekrani).
    - `<title>` ve `apple-mobile-web-app-title`: uygulamanin adi.
 2. **`manifest.webmanifest`**: `name`, `short_name`, `description`, `theme_color`, `background_color`.
 3. **`icon/`**: PNG'leri kendi ikonlarinla degistir (ayni isim ve olculerde).
@@ -345,6 +355,10 @@ Listede olmayan dosyalar ilk kez acildiklarinda onbellege alinir, ama offline il
   tarayici icin bir "navigate" istegidir (iframe icinde olsa da). `sw.js` bu yuzden onbellek anahtari
   olarak hep istegin kendi URL'sini kullanir; sadece ust sayfanin (`destination: "document"`) hicbir
   kaydi yoksa `index.htm`'e duser. Boylece `content/` sayfasi, `index.htm`'in onbellegini ezmez.
+- **Tema**: tema rengi `<head>` icindeki bir script ile, sayfa daha cizilmeden `<html>`'e verilir;
+  karanlik temada acilista beyaz bir kare gorunmez. Yerel bir sayfa temayi adresinden alir
+  (`content/index.htm?theme=dark`) ve kendini ayni renklerle cizer; site adresi oldugu gibi yuklenir,
+  beyaz arka planli bir site yine beyaz gorunur.
 - **Centik ve alt cubuk**: sayfa `viewport-fit=cover` ve `env(safe-area-inset-*)` kullanir; tam ekran
   modda icerik telefonun centiginin ve alt cubugunun altinda kalmaz.
 - **Kopyalar**: `basic/` ve `comp/` ana klasorlerin (`../../basic/`, `../../comp-m4/`) kopyalaridir ve

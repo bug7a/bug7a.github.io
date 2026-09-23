@@ -34,8 +34,9 @@
         /* Telefon centigi / alt cubugu icin guvenli alan. */
         body {
             padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-            background-color: #141414;
         }
+
+        /* NOT: Arka plan rengi temadan gelir (THEME), asagidaki script <html>'e verir. */
 
         </style>
 
@@ -52,6 +53,11 @@
         // Ex: "https://bug7a.github.io/expense/"   Ex: "content/index.htm"
         //const CONTENT_URL = "https://bug7a.github.io/kodlama-egitimi/";
         const CONTENT_URL = "content/index.htm"
+
+        // Colors of the app: "dark" or "light". (The colors of each theme are in THEMES below.)
+        // NOTE: The splash screen of the installed app takes its color from manifest.webmanifest
+        //       (background_color, theme_color). With "light", set both to THEMES.light.page there too.
+        const THEME = "dark";
 
         // Does the content need internet?
         // "online"  -> no connection blocks the content: the offline screen below is shown instead.
@@ -85,7 +91,6 @@
         const USE_PAGE_FIT = false;     // page.fit() ile olcekleme. Varsayilan: kapali.
         const CONTENT_WIDTH = 600;      // Design width of the content
         const MAX_WIDTH = 700;          // The content is not wider than this
-        const PAGE_COLOR = "#141414";   // Behind the content
         const LOAD_TIMEOUT = 15;        // Seconds. The page did not load in this time -> offline screen
         const INSTALL_TOAST_DELAY = 1500; // ms. The install toast comes this late after the app is opened.
 
@@ -101,6 +106,40 @@
             '<path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>' +
             '<line x1="12" y1="20" x2="12.01" y2="20"/>' +
             '</svg>';
+
+        // *** THEMES: The colors of THEME. Change them for your own app.
+        const THEMES = {
+            dark: {
+                page: "#141414",                        // Behind everything (also while the app opens)
+                content: "#141414",                     // Behind the web view, until the page is drawn
+                loadingCover: "rgba(20, 20, 20, 0.9)",  // Over the web view while the page loads
+                spinner: "#5FB39F",
+                offline: "#141414",                     // "No internet connection" screen
+                offlineTitle: "rgba(255, 255, 255, 0.9)",
+                offlineText: "rgba(255, 255, 255, 0.55)",
+                button: "#3D7A6B",
+                buttonText: "#FFFFFF",
+                toast: "dark",                          // Toast theme: "dark" or "light"
+            },
+            light: {
+                page: "#EEF0F2",
+                content: "#FFFFFF",
+                loadingCover: "rgba(255, 255, 255, 0.9)",
+                spinner: "#3D7A6B",
+                offline: "#F4F6F8",
+                offlineTitle: "rgba(0, 0, 0, 0.85)",
+                offlineText: "rgba(0, 0, 0, 0.5)",
+                button: "#3D7A6B",
+                buttonText: "#FFFFFF",
+                toast: "dark",
+            },
+        };
+        const COLORS = THEMES[THEME] || THEMES.dark;
+
+        // WHY: This runs in <head>, before anything is drawn. So the first frame of the page already
+        //      has the theme color (no white flash in the dark theme, no dark flash in the light one).
+        document.documentElement.style.backgroundColor = COLORS.page;
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", COLORS.page);
 
         // *** VARIABLES
 
@@ -124,18 +163,18 @@
             // If your screen is small, you will see content smaller. But always fit
 
             // Toasts: at the bottom center, over the content.
-            Toast.setOptions({ position: "bottom-center", theme: "dark", width: CONTENT_WIDTH - 40 });
+            Toast.setOptions({ position: "bottom-center", theme: COLORS.toast, width: CONTENT_WIDTH - 40 });
 
             // GROUP: Centered
             AutoLayout({
-                color: PAGE_COLOR,
+                color: COLORS.page,
             });
 
                 // BOX: Content container
                 startBox({
                     width: USE_PAGE_FIT ? CONTENT_WIDTH : "100%",
                     height: "100%",
-                    color: "white",
+                    color: COLORS.content,
                 });
 
                     // WEB VIEW: The site or the .htm file of the app
@@ -149,8 +188,8 @@
                         allow: "clipboard-write; fullscreen",
                         placeholderText: "",
                         style: {
-                            box: { color: "white", border: 0, round: 0 },
-                            loading: { color: White(0.9), spinnerColor: "#3D7A6B", spinnerSize: 28 },
+                            box: { color: COLORS.content, border: 0, round: 0 },
+                            loading: { color: COLORS.loadingCover, spinnerColor: COLORS.spinner, spinnerSize: 28 },
                         },
                         onTimeout: function(self) {
                             // WHY: A page of another site can not be checked by the browser. If it does
@@ -164,7 +203,7 @@
 
                     // BOX: "No internet connection" screen (over the web view)
                     offlinePanel = startBox(0, 0, "100%", "100%", {
-                        color: "#F4F6F8",
+                        color: COLORS.offline,
                     });
 
                         VGroup({
@@ -185,7 +224,7 @@
                             Label({
                                 text: OFFLINE_TITLE,
                                 fontSize: 20,
-                                textColor: "rgba(0, 0, 0, 0.85)",
+                                textColor: COLORS.offlineTitle,
                             });
                             that.elem.style.fontFamily = "opensans-bold";
 
@@ -193,7 +232,7 @@
                             Label({
                                 text: OFFLINE_MESSAGE,
                                 fontSize: 15,
-                                textColor: "rgba(0, 0, 0, 0.5)",
+                                textColor: COLORS.offlineText,
                                 width: 320,
                             });
                             that.elem.style.textAlign = "center";
@@ -203,8 +242,8 @@
                             Button(0, 0, 160, 46, {
                                 text: OFFLINE_BUTTON_TEXT,
                                 round: 8,
-                                color: "#3D7A6B",
-                                textColor: "white",
+                                color: COLORS.button,
+                                textColor: COLORS.buttonText,
                                 fontSize: 16,
                             });
                             that.elem.style.marginTop = "6px";
@@ -288,7 +327,16 @@
             }
 
             offlinePanel.visible = 0;
-            webView.load(CONTENT_URL);
+            webView.load(getContentUrl());
+
+        };
+
+        // A local page (Ex: "content/index.htm") gets the theme in its address ("?theme=dark"), so it
+        // can draw itself in the same colors. A site address is loaded as it is.
+        const getContentUrl = function() {
+
+            if (/^[a-z]+:\/\//i.test(CONTENT_URL)) return CONTENT_URL;
+            return CONTENT_URL + ((CONTENT_URL.indexOf("?") > -1) ? "&" : "?") + "theme=" + THEME;
 
         };
 
