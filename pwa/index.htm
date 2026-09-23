@@ -26,8 +26,8 @@
         <script src="basic/basic.min.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- COMPONENTS (comp-m4) -->
-        <script src="comp/web-view.js" type="text/javascript" charset="utf-8"></script>
-        <script src="comp/toast.js" type="text/javascript" charset="utf-8"></script>
+        <script src="comp/web-view.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="comp/toast.min.js" type="text/javascript" charset="utf-8"></script>
 
         <style>
 
@@ -43,9 +43,15 @@
 
         // *** SETTINGS: Change this part for your own app.
 
+        // A short, unique name for this app (letters, numbers, "-"). The offline cache is kept
+        // under this name, so two apps on the same site address never delete each other's files.
+        // Give every app made from this template its own APP_ID.
+        const APP_ID = "app-example";
+
         // The page of the app: a site address or a local .htm file next to this file.
         // Ex: "https://bug7a.github.io/expense/"   Ex: "content/index.htm"
-        const CONTENT_URL = "https://bug7a.github.io/kodlama-egitimi/";
+        //const CONTENT_URL = "https://bug7a.github.io/kodlama-egitimi/";
+        const CONTENT_URL = "content/index.htm"
 
         // Does the content need internet?
         // "online"  -> no connection blocks the content: the offline screen below is shown instead.
@@ -98,9 +104,9 @@
 
         // *** VARIABLES
 
-        let webView = null;             // The page of the app (comp/web-view.js)
+        let webView = null;             // The page of the app (comp/web-view.min.js)
         let offlinePanel = null;        // "No internet connection" screen over the web view
-        let installToast = null;        // The toast at the bottom (comp/toast.js)
+        let installToast = null;        // The toast at the bottom (comp/toast.min.js)
 
         // PWA VARIABLES
         let installEvent = null;        // beforeinstallprompt olayi burada beklet.
@@ -254,7 +260,7 @@
         };
 
         // WHY: page.fit() scales the body (CSS transform). A "position: fixed" object (the toasts of
-        //      comp/toast.js) is then placed inside the body, not inside the screen. The body has no
+        //      comp/toast.min.js) is then placed inside the body, not inside the screen. The body has no
         //      size of its own (basic.js puts everything on it absolutely), so the toasts landed
         //      outside the screen. Here the body is made as big as the design area.
         const fitBodyToPage = function() {
@@ -350,7 +356,8 @@
 
             // NOT: Service worker sadece https:// veya localhost uzerinde calisir.
             //      Dosyayi cift tiklayip file:// olarak acarsan kaydolmaz.
-            navigator.serviceWorker.register("sw.js", { scope: "./" })
+            // APP_ID, sw.js'e adresin sonunda gider (sw.js?app=...); onbellek adi ondan olusur.
+            navigator.serviceWorker.register("sw.js?app=" + encodeURIComponent(APP_ID), { scope: "./" })
                 .then(function(registration) {
 
                     println("PWA: Service worker registered.");

@@ -13,13 +13,13 @@
 //      Degisince eski cache silinir ve dosyalar yeniden indirilir.
 const CACHE_VERSION = "v1.1.5";
 
-// APP PATH: sw.js dosyasinin bulundugu klasorun yolu (ornek: "-project1-pwa-example-").
-// NOT: Cache Storage alan adina (origin) gore ortaktir, klasore gore degil. Bu proje ile
-//      ayni alan adina (ornek: bir GitHub Pages hesabinin farkli repo'lari) birden fazla
-//      uygulama kurulursa, CACHE_PREFIX'e eklenen bu yol sayesinde her uygulama otomatik
-//      kendi cache adini kullanir; biri digerinin cache'ini "activate" sirasinda silmez.
-const APP_PATH = self.location.pathname.replace(/[^a-z0-9]/gi, "-");
-const CACHE_PREFIX = "mobile-app" + APP_PATH;
+// APP ID: index.htm icindeki APP_ID (kayit adresinden gelir: "sw.js?app=app-example").
+// NOT: Cache Storage alan adina (origin) gore ortaktir, klasore gore degil. Ayni alan adina
+//      (ornek: bir GitHub Pages hesabinin farkli repo'lari) birden fazla uygulama kurulursa,
+//      her uygulama kendi APP_ID'si ile kendi cache adini kullanir; biri digerinin cache'ini
+//      "activate" sirasinda silmez. Sondaki ":" sayesinde "app" ile "app-2" de karismaz.
+const APP_ID = new URL(self.location.href).searchParams.get("app") || "app";
+const CACHE_PREFIX = "pwa:" + APP_ID + ":";
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 
 // APP SHELL: Offline calismasi icin gereken dosyalar.
@@ -31,8 +31,8 @@ const APP_SHELL = [
     "./manifest.webmanifest",
     "./basic/basic.min.css",
     "./basic/basic.min.js",
-    "./comp/web-view.js",
-    "./comp/toast.js",
+    "./comp/web-view.min.js",
+    "./comp/toast.min.js",
     "./content/index.htm",
     "./basic/font/open-sans/OpenSans-Regular.ttf",
     "./basic/font/open-sans/OpenSans-Bold.ttf",
