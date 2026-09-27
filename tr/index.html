@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07070B">
+
+    <!-- WHY: The files of the site (basic/, comp/, js/, img/) are in the root, not copied into tr/.
+         Every relative address on this page is read from the root, so the paths are the same as in index.html. -->
+    <base href="../">
+
+    <!-- SEO: The Turkish page. The page is drawn by JavaScript, so everything a search engine or a link
+         preview needs is here in the HTML: the title, the description, the tags below, the JSON-LD and the
+         <noscript> part in <body>. (Keep them the same as js/content-tr.js when the content changes.)
+         İstanbul is the place of the clients, not of the person: the work is remote. -->
+    <title>Buğra Özden — Freelance Web ve Uygulama Geliştirici | İstanbul ve Türkiye Geneli</title>
+    <meta name="description" content="İstanbul'daki, Türkiye genelindeki ve yurt dışındaki müşterilerle uzaktan çalışan freelance web ve uygulama geliştirici. Özel yönetim panelleri, dashboard'lar, gelişmiş web formları ve interaktif web uygulamaları.">
+    <meta name="keywords" content="freelance yazılımcı, freelance yazılımcı İstanbul, web uygulama geliştirme, yönetim paneli, admin panel, dashboard, web form, JavaScript geliştirici, web yazılım İstanbul">
+    <meta name="author" content="Buğra Özden">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://bug7a.github.io/tr/">
+
+    <!-- LANGUAGES: The same page in English (the root) and in Turkish (here) -->
+    <link rel="alternate" hreflang="en" href="https://bug7a.github.io/">
+    <link rel="alternate" hreflang="tr" href="https://bug7a.github.io/tr/">
+    <link rel="alternate" hreflang="x-default" href="https://bug7a.github.io/">
+
+    <!-- Link preview (Open Graph: WhatsApp, LinkedIn, Facebook...) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Buğra Özden">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:title" content="Buğra Özden — Freelance Web ve Uygulama Geliştirici | İstanbul ve Türkiye Geneli">
+    <meta property="og:description" content="Özel yönetim panelleri, dashboard'lar, gelişmiş web formları ve interaktif web uygulamaları. İstanbul'daki, Türkiye genelindeki ve yurt dışındaki müşterilerle uzaktan çalışıyorum.">
+    <meta property="og:url" content="https://bug7a.github.io/tr/">
+    <meta property="og:image" content="https://bug7a.github.io/img/og-image-tr.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Buğra Özden — Freelance Web ve Uygulama Geliştirici">
+
+    <!-- Link preview (X / Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Buğra Özden — Freelance Web ve Uygulama Geliştirici | İstanbul ve Türkiye Geneli">
+    <meta name="twitter:description" content="Özel yönetim panelleri, dashboard'lar, gelişmiş web formları ve interaktif web uygulamaları. İstanbul'daki, Türkiye genelindeki ve yurt dışındaki müşterilerle uzaktan çalışıyorum.">
+    <meta name="twitter:image" content="https://bug7a.github.io/img/og-image-tr.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="img/monogram.svg">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- STRUCTURED DATA: Who and which services (schema.org), in Turkish. The e-mail is not written here. (Spam)
+         NOTE: No address: the work is remote. İstanbul is where the services are given (areaServed). -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Person",
+                "@id": "https://bug7a.github.io/#person",
+                "name": "Buğra Özden",
+                "jobTitle": "Freelance Web ve Uygulama Geliştirici",
+                "url": "https://bug7a.github.io/tr/",
+                "image": "https://bug7a.github.io/img/og-image-tr.jpg",
+                "knowsAbout": ["Web uygulaması geliştirme", "Yönetim panelleri", "Dashboard", "Web formları", "Progressive Web App (PWA)", "JavaScript", "Mobil uygulamalar"],
+                "sameAs": [
+                    "https://github.com/bug7a/",
+                    "https://www.linkedin.com/in/bugra-ozden/",
+                    "https://www.youtube.com/c/bugraozden",
+                    "https://www.udemy.com/user/bugra-ozden/"
+                ]
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://bug7a.github.io/tr/#webpage",
+                "url": "https://bug7a.github.io/tr/",
+                "name": "Buğra Özden — Freelance Web ve Uygulama Geliştirici",
+                "inLanguage": "tr",
+                "about": { "@id": "https://bug7a.github.io/#person" },
+                "isPartOf": { "@id": "https://bug7a.github.io/#website" }
+            },
+            {
+                "@type": "Service",
+                "name": "Özel Yönetim Panelleri ve Dashboard'lar",
+                "serviceType": "Web uygulaması geliştirme",
+                "description": "İşletmenize özel bir yönetim paneli: siparişler, müşteriler, ürünler, raporlar ve cihazlardan gelen canlı veriler tek ekranda.",
+                "provider": { "@id": "https://bug7a.github.io/#person" },
+                "areaServed": [{ "@type": "City", "name": "İstanbul" }, { "@type": "Country", "name": "Türkiye" }, "Dünya geneli"]
+            },
+            {
+                "@type": "Service",
+                "name": "Gelişmiş Web Formları",
+                "serviceType": "Web geliştirme",
+                "description": "Kendini kontrol eden ve cevapları e-postanıza ya da veritabanınıza gönderen randevu, sipariş, etkinlik bileti, iş başvurusu, destek ve geri bildirim formları.",
+                "provider": { "@id": "https://bug7a.github.io/#person" },
+                "areaServed": [{ "@type": "City", "name": "İstanbul" }, { "@type": "Country", "name": "Türkiye" }, "Dünya geneli"]
+            }
+        ]
+    }
+    </script>
+
+    <!-- FONT: Plus Jakarta Sans (Open Sans of basic.js is the fallback, when there is no internet) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+
+    <!-- LIBRARY FILES -->
+    <link rel="stylesheet" type="text/css" href="basic/basic.min.css">
+    <script src="basic/basic.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="basic/scroll-bar.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- COMPONENTS: The contact form (copies of js-components/comp-m2, the same as __projects/contact-form) -->
+    <script src="comp/tooltip.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="comp/input-b.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="comp/email-input-b.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="comp/phone-input-b.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="comp/textarea-b.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="comp/waiting.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="comp/form.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="comp/radio-button.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- PAGE: The content in Turkish, then the code of the page (the same code for every language) -->
+    <script src="js/content-tr.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/site.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+
+    <!-- SEO: The content of the page as plain HTML, for browsers and robots that do not run JavaScript.
+         (The page itself is drawn by js/site.js. Keep this the same as js/content-tr.js when the content changes.)
+         WHY: The box scrolls itself, because basic.css turns off the scrolling of <body>. -->
+    <noscript>
+        <div style="position: fixed; inset: 0; overflow: auto; padding: 40px 24px; background: #07070B; color: #F4F4F7; font-family: sans-serif; line-height: 1.6;">
+            <main style="max-width: 760px; margin: 0 auto;">
+
+                <p><a href="./" hreflang="en" lang="en" style="color: #A78BFA;">English</a></p>
+
+                <h1>Buğra Özden</h1>
+                <p>İstanbul'daki, Türkiye genelindeki ve yurt dışındaki müşterilerle uzaktan çalışan freelance web ve uygulama geliştirici. İnteraktif web uygulamaları, özel yönetim panelleri, dashboard'lar ve gelişmiş web formları.</p>
+
+                <h2>Hizmetler</h2>
+
+                <h3>Özel Yönetim Panelleri ve Dashboard'lar</h3>
+                <p>İşletmenize özel bir yönetim paneli: siparişler, müşteriler, ürünler, raporlar ve cihazlardan gelen canlı veriler tek ekranda. Yalnızca ihtiyacınız olan sayfalar, sizin renklerinizle. Grafikler, veri tabloları, filtreler ve dışa aktarma hazır; yeni modüller, paneli baştan yazmadan sonradan eklenebilir. Tarayıcıda çalışır, kurulum gerektirmez. <a href="https://bug7a.github.io/admin-panel" style="color: #A78BFA;">İnternet Sitesi</a> · <a href="https://bug7a.github.io/admin-panel-example" style="color: #A78BFA;">Canlı örnek</a></p>
+
+                <h3>Gelişmiş Web Formları</h3>
+                <p>Yalnızca yazı toplamaktan fazlasını yapan formlar: randevu, sipariş, etkinlik bileti, iş başvurusu, destek talebi ve müşteri geri bildirimi. Ziyaretçi yazarken her alan kendini kontrol eder, gönder düğmesi neyin eksik olduğunu gösterir. Cevaplar e-postanıza ya da veritabanınıza gelir ve form her web sitesine yerleştirilebilir. <a href="https://bug7a.github.io/advanced-web-forms" style="color: #A78BFA;">İnternet Sitesi</a> · <a href="tr/#contact" style="color: #A78BFA;">Canlı örnek</a></p>
+
+                <!-- HIDDEN for now (easyPWA):
+                <h3>easyPWA</h3>
+                <p>Web sitenizi ya da web uygulamanızı, App Store veya Google Play olmadan telefonlara ve bilgisayarlara kurulabilen bir uygulamaya dönüştürür. Ana ekrandan tarayıcı çubuğu olmadan açılır, kendi yükleme ekranınızı gösterir ve internet bağlantısı olmadığında kullanıcıya haber verir. <a href="https://bug7a.github.io/pwa/" style="color: #A78BFA;">Canlı örnek</a></p>
+                -->
+
+                <h2>Projeler</h2>
+
+                <h3>Kodlama: Kod Yazma Eğitimi</h3>
+                <p>Çocuklara, gerçek bir programlama dili (JavaScript) kullanarak algoritma geliştirme ve problem çözme deneyimi kazandıran, bulmaca oyunu tarzında bir eğitim uygulaması. <a href="https://bug7a.github.io/kodlama/" style="color: #A78BFA;">İnternet Sitesi</a> · <a href="https://bug7a.github.io/kodlama-egitimi/" style="color: #A78BFA;">Eğitim</a> · <a href="https://github.com/bug7a/basicjs-turkce/" style="color: #A78BFA;">Örnek Projeler</a></p>
+
+                <h3>The Fallen Kingdoms</h3>
+                <p>Sıra tabanlı strateji ile kart seçme mekaniklerini birleştiren bir kutu oyunu. Steam'de "Remote Play Together" destekleyen bir parti oyunu. <a href="https://store.steampowered.com/app/2923920?utm_source=bugraozden" style="color: #A78BFA;">Steam'de gör</a></p>
+
+                <h3>Kişisel Harcama Defteri</h3>
+                <p>Bir bütçe belirleyip harcamaları kategorilere göre takip etmeye yarayan bir mobil uygulama. <a href="https://bug7a.github.io/expense/" style="color: #A78BFA;">Önizleme</a></p>
+
+                <h3>Closed-Loop Marketing</h3>
+                <p>İlaç firmalarının saha ekipleri için mobil (iOS) CLM (Closed-Loop Marketing) uygulaması. Roche, Novo Nordisk ve Boehringer Ingelheim'da 500'den fazla tıbbi temsilci, doktor ziyaretlerinde kullandı: doktorlara sunumlar, ziyaret verileri ve eğitimler tek bir uygulamada.</p>
+
+                <h2>Açık Kaynak</h2>
+                <ul>
+                    <li><a href="https://bug7a.github.io/basic.js/" style="color: #A78BFA;">basic.js — Arayüz Kütüphanesi</a></li>
+                    <li><a href="https://bug7a.github.io/js-components/" style="color: #A78BFA;">basic.js — Arayüz Bileşenleri</a></li>
+                    <li><a href="https://github.com/bug7a/js-components" style="color: #A78BFA;">basic.js — Şablonlar</a></li>
+                </ul>
+
+                <h2 id="contact">İletişim</h2>
+                <p>İstanbul'daki, Türkiye genelindeki ve yurt dışındaki müşterilerle uzaktan çalışıyorum.</p>
+                <ul>
+                    <li><a href="https://github.com/bug7a/" style="color: #A78BFA;">GitHub</a></li>
+                    <li><a href="https://www.linkedin.com/in/bugra-ozden/" style="color: #A78BFA;">LinkedIn</a></li>
+                    <li><a href="https://www.youtube.com/c/bugraozden" style="color: #A78BFA;">YouTube</a></li>
+                    <li><a href="https://www.udemy.com/user/bugra-ozden/" style="color: #A78BFA;">Udemy</a></li>
+                </ul>
+
+            </main>
+        </div>
+    </noscript>
+
+</body>
+
+</html>
