@@ -1,1 +1,0 @@
-// iframeler arası iletişim sağlayan class
