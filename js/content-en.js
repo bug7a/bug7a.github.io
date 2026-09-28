@@ -41,7 +41,7 @@ const SITE = {
             images: ["img/service-admin1.jpg", "img/service-admin2.jpg", "img/service-admin3.jpg", "img/service-admin4.jpg"],
             links: [
                 { text: "Web page", url: "https://bug7a.github.io/admin-panel", primary: 1 },
-                { text: "Live example", url: "https://bug7a.github.io/admin-panel-example" },
+                { text: "Live example", url: "https://bug7a.github.io/admin-panel/demo/" },
             ],
         },
         {
