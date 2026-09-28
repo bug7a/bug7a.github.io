@@ -54,7 +54,7 @@ const SITE = {
             ],
             images: ["img/service-form1.jpg", "img/service-form2.jpg", "img/service-form3.jpg", "img/service-form4.jpg"],
             links: [
-                { text: "İnternet Sitesi", url: "https://bug7a.github.io/advanced-web-forms", primary: 1 },
+                { text: "İnternet Sitesi", url: "https://bug7a.github.io/web-forms", primary: 1 },
                 { text: "Canlı örnek", section: "contact" }, // Bu sayfanın altındaki iletişim formu
             ],
         },

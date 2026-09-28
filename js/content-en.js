@@ -52,7 +52,7 @@ const SITE = {
             ],
             images: ["img/service-form1.jpg", "img/service-form2.jpg", "img/service-form3.jpg", "img/service-form4.jpg"],
             links: [
-                { text: "Web page", url: "https://bug7a.github.io/advanced-web-forms", primary: 1 },
+                { text: "Web page", url: "https://bug7a.github.io/web-forms", primary: 1 },
                 { text: "Live example", section: "contact" }, // The contact form at the bottom of this page
             ],
         },
