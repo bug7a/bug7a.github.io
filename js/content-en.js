@@ -148,7 +148,7 @@ const SITE = {
     openSource: [
         { text: "basic.js — UI Library", image: "img/logo/basicjs.svg", url: "https://bug7a.github.io/basic.js/" },
         { text: "basic.js — UI Components", image: "img/logo/basicui.svg", url: "https://bug7a.github.io/js-components/" },
-        { text: "basic.js — Templates", image: "img/logo/basicjs-templates.svg", url: "https://github.com/bug7a/js-components" },
+        { text: "basic.js — App Templates", image: "img/logo/basicjs-templates.svg", url: "https://github.com/bug7a/js-components" },
     ],
 
     // WHY: The address is an image and is written by code, so it is not read by spam robots.

@@ -150,7 +150,7 @@ const SITE = {
     openSource: [
         { text: "basic.js — Arayüz Kütüphanesi", image: "img/logo/basicjs.svg", url: "https://bug7a.github.io/basic.js/" },
         { text: "basic.js — Arayüz Bileşenleri", image: "img/logo/basicui.svg", url: "https://bug7a.github.io/js-components/" },
-        { text: "basic.js — Şablonlar", image: "img/logo/basicjs-templates.svg", url: "https://github.com/bug7a/js-components" },
+        { text: "basic.js — Uygulama Şablonları", image: "img/logo/basicjs-templates.svg", url: "https://github.com/bug7a/js-components" },
     ],
 
     // WHY: Adres bir resimdir ve kodla birleştirilir, böylece spam robotları okuyamaz.
