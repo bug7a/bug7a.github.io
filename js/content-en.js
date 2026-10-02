@@ -40,8 +40,8 @@ const SITE = {
             ],
             images: ["img/service-admin1.jpg", "img/service-admin2.jpg", "img/service-admin3.jpg", "img/service-admin4.jpg"],
             links: [
-                { text: "Web page", url: "https://bug7a.github.io/admin-panel", primary: 1 },
-                { text: "Live example", url: "https://bug7a.github.io/admin-panel/demo/" },
+                { text: "Web page", url: "https://bug7a.github.io/ozden-panel/", primary: 1 },
+                { text: "Live example", url: "https://bug7a.github.io/ozden-panel/demo/" },
             ],
         },
         {
@@ -52,7 +52,7 @@ const SITE = {
             ],
             images: ["img/service-form1.jpg", "img/service-form2.jpg", "img/service-form3.jpg", "img/service-form4.jpg"],
             links: [
-                { text: "Web page", url: "https://bug7a.github.io/web-forms", primary: 1 },
+                { text: "Web page", url: "https://bug7a.github.io/ozden-forms/", primary: 1 },
                 { text: "Live example", section: "contact" }, // The contact form at the bottom of this page
             ],
         },

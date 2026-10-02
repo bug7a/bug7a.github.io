@@ -35,15 +35,15 @@ const SITE = {
 
     services: [
         {
-            title: "Özel Yönetim Panelleri ve Dashboard'lar",
+            title: "Rapor Ekranları ve Yönetim Paneli",
             texts: [
                 "İşletmenize özel bir yönetim paneli: siparişler, müşteriler, ürünler, raporlar ve cihazlardan gelen canlı veriler tek ekranda. Yalnızca ihtiyacınız olan sayfalar, sizin renklerinizle.",
                 "Grafikler, veri tabloları, filtreler ve dışa aktarma hazır; yeni modüller, paneli baştan yazmadan sonradan eklenebilir. Tarayıcıda çalışır, kurulum gerektirmez.",
             ],
             images: ["img/service-admin1.jpg", "img/service-admin2.jpg", "img/service-admin3.jpg", "img/service-admin4.jpg"],
             links: [
-                { text: "İnternet Sitesi", url: "https://bug7a.github.io/admin-panel", primary: 1 },
-                { text: "Canlı örnek", url: "https://bug7a.github.io/admin-panel/demo/" },
+                { text: "İnternet Sitesi", url: "https://bug7a.github.io/ozden-panel/", primary: 1 },
+                { text: "Canlı örnek", url: "https://bug7a.github.io/ozden-panel/demo/" },
             ],
         },
         {
@@ -54,7 +54,7 @@ const SITE = {
             ],
             images: ["img/service-form1.jpg", "img/service-form2.jpg", "img/service-form3.jpg", "img/service-form4.jpg"],
             links: [
-                { text: "İnternet Sitesi", url: "https://bug7a.github.io/web-forms", primary: 1 },
+                { text: "İnternet Sitesi", url: "https://bug7a.github.io/ozden-forms/", primary: 1 },
                 { text: "Canlı örnek", section: "contact" }, // Bu sayfanın altındaki iletişim formu
             ],
         },

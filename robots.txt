@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://bug7a.github.io/sitemap.xml
-Sitemap: https://bug7a.github.io/admin-panel/sitemap.xml
+Sitemap: https://bug7a.github.io/ozden-panel/sitemap.xml
 Sitemap: https://bug7a.github.io/basic.js/sitemap.xml
 Sitemap: https://bug7a.github.io/basic.js-handbook/sitemap.xml
-Sitemap: https://bug7a.github.io/web-forms/sitemap.xml
+Sitemap: https://bug7a.github.io/ozden-forms/sitemap.xml
