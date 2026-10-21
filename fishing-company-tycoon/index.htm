@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Fishing Company Tycoon – a relaxed fishing management game</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Build a fishing company from a single boat: send ships to the fishing grounds, truck the catch to the best markets and grow a fleet that works by itself.">
+    <meta name="keywords" content="Fishing Company Tycoon, fishing game, tycoon game, management game, cozy game, indie game, PC game, Steam">
+    <meta name="author" content="Buğra Özden">
+    <meta name="theme-color" content="#0B1420">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <!-- SEO: two languages at the same address: ?lang=tr / ?lang=en (js/site.js; the default one has no ?lang).
+         The address of the site is not known yet: when it is, run `python3 set-site-url.py https://.../` in this folder.
+         It writes CONFIG.siteURL (js/config.js), the SITE-URL block below (canonical, hreflang, og:url, a full og:image:
+         link previews do not run JavaScript), the full addresses of the JSON-LD and sitemap.xml.
+         The <noscript> part and the JSON-LD are made from js/texts.js: keep them the same when the texts change. -->
+
+    <!-- SOCIAL (link preview) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Fishing Company Tycoon">
+    <meta property="og:title" content="Fishing Company Tycoon – a relaxed fishing management game">
+    <meta property="og:description" content="Build a fishing company from a single boat: send ships to the fishing grounds, truck the catch to the best markets and grow a fleet that works by itself.">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="tr_TR">
+    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="es_LA">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="og:locale:alternate" content="pl_PL">
+    <meta property="og:locale:alternate" content="ru_RU">
+    <meta property="og:locale:alternate" content="zh_CN">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <!-- SITE-URL START: written by `python3 set-site-url.py <address>` (canonical, hreflang, og:url, og:image with the full address) -->
+    <link rel="canonical" href="https://bug7a.github.io/fishing-company-tycoon/">
+    <link rel="alternate" hreflang="en" href="https://bug7a.github.io/fishing-company-tycoon/">
+    <link rel="alternate" hreflang="tr" href="https://bug7a.github.io/fishing-company-tycoon/?lang=tr">
+    <link rel="alternate" hreflang="de" href="https://bug7a.github.io/fishing-company-tycoon/?lang=de">
+    <link rel="alternate" hreflang="fr" href="https://bug7a.github.io/fishing-company-tycoon/?lang=fr">
+    <link rel="alternate" hreflang="es-419" href="https://bug7a.github.io/fishing-company-tycoon/?lang=es">
+    <link rel="alternate" hreflang="pt-BR" href="https://bug7a.github.io/fishing-company-tycoon/?lang=pt">
+    <link rel="alternate" hreflang="pl" href="https://bug7a.github.io/fishing-company-tycoon/?lang=pl">
+    <link rel="alternate" hreflang="ru" href="https://bug7a.github.io/fishing-company-tycoon/?lang=ru">
+    <link rel="alternate" hreflang="zh-Hans" href="https://bug7a.github.io/fishing-company-tycoon/?lang=zh">
+    <link rel="alternate" hreflang="ja" href="https://bug7a.github.io/fishing-company-tycoon/?lang=ja">
+    <link rel="alternate" hreflang="x-default" href="https://bug7a.github.io/fishing-company-tycoon/">
+    <meta property="og:url" content="https://bug7a.github.io/fishing-company-tycoon/">
+    <meta property="og:image" content="https://bug7a.github.io/fishing-company-tycoon/assets/og-image.jpg">
+    <meta name="twitter:image" content="https://bug7a.github.io/fishing-company-tycoon/assets/og-image.jpg">
+    <!-- SITE-URL END -->
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Fishing Company Tycoon: Harbor to Market">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fishing Company Tycoon – a relaxed fishing management game">
+    <meta name="twitter:description" content="Build a fishing company from a single boat: send ships to the fishing grounds, truck the catch to the best markets and grow a fleet that works by itself.">
+
+    <!-- STRUCTURED DATA (schema.org) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Fishing Company Tycoon: Harbor to Market",
+        "url": "https://bug7a.github.io/fishing-company-tycoon/",
+        "description": "Build a fishing company from a single boat. Send your ships to the fishing grounds, truck the catch to the markets that pay the most, research better gear, and grow a fleet that works by itself. A relaxed management game on a living island.",
+        "genre": ["Simulation", "Management", "Tycoon"],
+        "gamePlatform": "PC",
+        "operatingSystem": "Windows",
+        "applicationCategory": "Game",
+        "inLanguage": ["en", "tr"],
+        "playMode": "SinglePlayer",
+        "numberOfPlayers": { "@type": "QuantitativeValue", "value": 1 },
+        "image": "https://bug7a.github.io/fishing-company-tycoon/assets/og-image.jpg",
+        "screenshot": ["https://bug7a.github.io/fishing-company-tycoon/assets/shots/01-harbor.jpg", "https://bug7a.github.io/fishing-company-tycoon/assets/shots/11-ship-panel.jpg", "https://bug7a.github.io/fishing-company-tycoon/assets/shots/13-truck-where-to.jpg", "https://bug7a.github.io/fishing-company-tycoon/assets/shots/08-night.jpg"],
+        "keywords": "fishing game, tycoon, management game, cozy game, fleet, island",
+        "author": { "@type": "Person", "name": "Buğra Özden", "url": "https://bug7a.github.io/" },
+        "publisher": { "@type": "Organization", "name": "Ozden Games", "sameAs": ["https://www.youtube.com/@ozdengames"] },
+        "sameAs": ["https://store.steampowered.com/app/5452400/Fishing_Company_Tycoon_Harbor_to_Market/"],
+        "trailer": {
+            "@type": "VideoObject",
+            "name": "Fishing Company Tycoon — Gameplay Trailer | Harbor to Market",
+            "description": "Build your own fishing company: fill your holds, sell where the fish pays the most, supply hotels and restaurants, research better gear and let your fleet work on its own.",
+            "embedUrl": "https://www.youtube-nocookie.com/embed/vra29kgX-7Q",
+            "contentUrl": "https://youtu.be/vra29kgX-7Q",
+            "thumbnailUrl": "https://i.ytimg.com/vi/vra29kgX-7Q/maxresdefault.jpg",
+            "uploadDate": "2026-10-22T18:00:00+03:00",
+            "duration": "PT50S"
+        }
+    }
+    </script>
+
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/icon.png">
+
+    <!-- LIBRARY FILES -->
+    <link rel="preload" href="basic/font/open-sans/OpenSans-Regular.ttf" as="font" crossorigin="anonymous">
+    <link rel="preload" href="basic/font/open-sans/OpenSans-Bold.ttf" as="font" crossorigin="anonymous">
+    <link rel="preload" href="assets/hero.jpg" as="image" media="(min-width: 760px)">
+    <link rel="stylesheet" type="text/css" href="basic/basic.min.css">
+    <script src="basic/basic.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="basic/scroll-bar.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- SITE FILES -->
+    <script src="js/config.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/texts.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/texts-de.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/texts-fr.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/texts-es.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/texts-pt.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/texts-pl.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/texts-ru.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/texts-zh.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/texts-ja.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/theme.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/sections.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/site.js" type="text/javascript" charset="utf-8"></script>
+
+    <!--
+
+    /* Bismillah */
+
+    FISHING COMPANY TYCOON WEBSITE
+    - Oyunun tanıtım sayfası. Arayüzün tamamı basic.js ile, saf JavaScript ile çizilir.
+    - Metinler: js/texts.js  |  Ayarlar ve bağlantılar (Steam, YouTube): js/config.js  |  Renkler: js/theme.js
+    - Bölümler: js/sections.js  |  Sayfa akışı: js/site.js -> SiteApp.build()
+
+    -->
+
+    <style>
+        html, body { background-color: #0B1420; } /* (no white flash while the files load) */
+        .noscript-box { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; padding: 40px 20px; box-sizing: border-box;
+            font-family: opensans, sans-serif; font-size: 16px; line-height: 1.6; color: rgba(232, 238, 245, 0.85); background: #0B1420; }
+        .noscript-box a { color: #F2C14E; }
+    </style>
+
+</head>
+
+<body>
+
+    <noscript>
+        <div class="noscript-box">
+            <div style="max-width: 760px; margin: 0 auto;">
+                <p><a href="?lang=tr" hreflang="tr" lang="tr">Türkçe</a></p>
+                <h1>Fishing Company Tycoon: Harbor to Market</h1>
+                <p><b>Build a fishing company from a single boat.</b> Send your ships to the fishing grounds, truck the catch to the markets that pay the most, research better gear, and grow a fleet that works by itself. A relaxed management game on a living island.</p>
+                <p>In development · PC (Windows) · English and Turkish</p>
+                <h2>From one small boat to the biggest fish company of the island</h2>
+                <p>You start with one small boat and an empty warehouse on the east coast of an island. Around you: twenty fishing grounds, four towns that all want something different, and a harbor that is waiting for someone to make it busy.</p>
+                <h3>From the harbor to the market</h3>
+                <p>Catch the fish, bring it home, and decide where it goes. The local buyer pays at once, but a truck to the right town pays more: the resort wants swordfish, the factory village wants sardines. Prices fall when you flood a market and recover when you leave it alone.</p>
+                <h3>A fleet that works by itself</h3>
+                <p>Six kinds of ships, from the starter boat to a solar flagship. Teach them, box by box, to cast, come home, unload, refuel and go out again. Then do the same for your trucks. The more your company grows, the less you have to click.</p>
+                <h3>Fish that run out, and come back</h3>
+                <p>Every fishing ground has its own stock. Fish it gently and it grows back; fish it too hard and it collapses. Tuna, swordfish and bluefin wait far out at sea for ships that can reach them.</p>
+                <h3>More than fish</h3>
+                <p>Agreements with hotels and restaurants, a reputation to earn, crab pots, squid that only bite at night, a mussel farm, a fish farm, a canning factory with one very big order, and your own restaurants to open.</p>
+                <h3>A living island</h3>
+                <p>Day turns to night, the weather changes, lamps come on in the towns, and your ships keep working with their lights. Now and then a big shoal shows up, or the harbor leaves you a gift.</p>
+                <h2>What is in the harbor</h2>
+                <ul>
+                    <li>6 ship types and 7 kinds of trucks</li>
+                    <li>20 fishing grounds, 12 kinds of fish and seafood</li>
+                    <li>4 towns with their own prices</li>
+                    <li>10 technology columns, 11 chapters of tasks</li>
+                    <li>2 languages: English, Turkish</li>
+                </ul>
+                <h2>System requirements</h2>
+                <p>Preliminary: Windows 10 (64-bit) · dual core, 2 GHz · 4 GB RAM · any card with WebGL support · 400 MB available space</p>
+                <h2>Press kit</h2>
+                <p>The logo, the icon, the key art and the screenshots in one file: <a href="assets/press-kit.zip" download>download the press kit</a> (ZIP, 6.8 MB).</p>
+                <p><a href="https://store.steampowered.com/app/5452400/Fishing_Company_Tycoon_Harbor_to_Market/">Wishlist on Steam</a> · <a href="https://youtu.be/vra29kgX-7Q">Watch the gameplay trailer</a></p>
+                <p>A game by <a href="https://bug7a.github.io/">Buğra Özden</a> · <a href="https://www.youtube.com/@ozdengames">YouTube channel</a> · © 2026 Ozden Games</p>
+            </div>
+        </div>
+    </noscript>
+
+</body>
+
+</html>

@@ -81,6 +81,18 @@ const SITE = {
 
     projects: [
         {
+            title: "Fishing Company Tycoon: Harbor to Market",
+            texts: [
+                "A relaxed management game for PC: build a fishing company from a single boat. Send your ships to the fishing grounds, truck the catch to the markets that pay the most, research better gear and grow a fleet that works by itself.",
+                "Written entirely in plain JavaScript with my own library, <b>basic.js</b>. Coming soon to Steam.",
+            ],
+            images: ["img/fct1.jpg", "img/fct2.jpg", "img/fct3.jpg", "img/fct4.jpg"],
+            links: [
+                { text: "Wishlist on Steam", url: "https://store.steampowered.com/app/5452400/Fishing_Company_Tycoon_Harbor_to_Market/?utm_source=bugraozden", primary: 1 },
+                { text: "Web site", url: "https://bug7a.github.io/fishing-company-tycoon/" },
+            ],
+        },
+        {
             title: "Kodlama: Kod Yazma Eğitimi",
             texts: [
                 "Bu eğitim uygulaması; çocuklara, gerçek bir programlama dili (JavaScript) kullanarak, algoritma geliştirme ve problem çözme deneyimi kazandırmak için tasarlanmıştır.",

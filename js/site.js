@@ -530,6 +530,7 @@ Site.createMarquee = function () {
         project.images.forEach(function (image) { items.push({ image: image, text: project.title }); });
     });
     SITE.moreProjects.forEach(function (item) { items.push({ image: item.image, text: item.text }); });
+    Site.mixMarqueeItems(items);
 
     const half = Math.ceil(items.length / 2);
     const tileHeight = 150;
@@ -560,6 +561,29 @@ Site.createMarquee = function () {
         animations.forEach(function (a) { if (a) a.updatePlaybackRate(1); });
     });
 
+};
+
+// Mixes the pictures (2026-10-21, the user: "karışık olsun"): a new order at every visit, and two pictures of the same
+// project are not side by side when it can be helped. The order is kept for the page, so a rebuild (resize, language)
+// does not jump the band. (items is changed in place; the lightbox uses the same order.)
+Site.mixMarqueeItems = function (items) {
+    if (!Site.marqueeOrder || Site.marqueeOrder.length != items.length) {
+        const rest = items.map(function (item, i) { return { i: i, text: item.text }; });
+        for (let i = rest.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            const t = rest[i]; rest[i] = rest[j]; rest[j] = t;
+        }
+        const order = [];
+        while (rest.length) {
+            const last = order.length ? items[order[order.length - 1]].text : null;
+            let k = rest.findIndex(function (r) { return r.text != last; });
+            if (k < 0) k = 0;
+            order.push(rest.splice(k, 1)[0].i);
+        }
+        Site.marqueeOrder = order;
+    }
+    const copy = items.slice();
+    Site.marqueeOrder.forEach(function (from, to) { items[to] = copy[from]; });
 };
 
 Site.createMarqueeRow = function (rowItems, firstIndex, allItems, top, tileHeight, gap, reverse) {

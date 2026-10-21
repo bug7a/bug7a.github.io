@@ -6,3 +6,4 @@ Sitemap: https://bug7a.github.io/ozden-panel/sitemap.xml
 Sitemap: https://bug7a.github.io/basic.js/sitemap.xml
 Sitemap: https://bug7a.github.io/basic.js-handbook/sitemap.xml
 Sitemap: https://bug7a.github.io/ozden-forms/sitemap.xml
+Sitemap: https://bug7a.github.io/fishing-company-tycoon/sitemap.xml
