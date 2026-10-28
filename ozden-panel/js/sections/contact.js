@@ -137,6 +137,7 @@ const ContactSection = function () {
 
         SITE.formWaiting.hide();
         showFormMessage(error ? 0 : 1);
+        if (!error) SiteConsent.trackConversion(); // Google Ads: "Ozden Panel - Teklif formu"
 
     };
 

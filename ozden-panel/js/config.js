@@ -70,6 +70,13 @@ const CONFIG = {
     siteURL: "https://bug7a.github.io/ozden-panel/",
     ogImage: "assets/og-image.jpg", // The link preview picture (1200 x 630), relative to this page
 
+    // *** GOOGLE ADS (js/consent.js):
+    // The Google tag loads with every consent "denied" (Consent Mode): no cookie until the visitor accepts the
+    // banner (KVKK). A sent form is a conversion ("Ozden Panel - Teklif formu" in Google Ads). "": no tag.
+    adsTagId: "AW-1047404711",
+    adsConversionSendTo: "AW-1047404711/YXHPCKG86KwdEKfBuPMD",
+    consentStorageKey: "wap_consent", // "granted" / "denied" (basic.storage)
+
     // *** BEHAVIOR:
     // Sayfa yeniden boyutlandığında, sayfayı yeniden kur (responsive).
     rebuildOnResizeDelay: 150,

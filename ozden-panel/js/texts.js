@@ -42,6 +42,31 @@ TEXTS.tr = {
         close: "Kapat",
     },
 
+    // AGENCY: ?for=ajans (the address of the ads for agencies): another hero text and the agency section.
+    agency: {
+        hero: {
+            eyebrow: "REKLAM AJANSLARI İÇİN",
+            title: "Müşteriniz için panel, sizin markanızla.",
+            lead: "Müşteriniz için uygulama veya site yaptınız; şimdi içeriğini, kullanıcılarını ya da raporlarını yönetecek bir panel istiyor. Paneli sizin adınıza, sizin markanızla (white-label) geliştiriyoruz; siz müşterinize kendi işiniz olarak teslim ediyorsunuz. Sabit fiyat, yazılı teslim tarihi.",
+        },
+        eyebrow: "AJANSLARLA NASIL ÇALIŞIYORUZ",
+        title: "Ajans takvimine uyan bir yazılım ortağı",
+        lead: "Ajans işinin nasıl aktığını biliyoruz: müşteri bekler, teklif net olmalı, teslim tarihi kaymamalı.",
+        items: [
+            { title: "Sizin markanız, sizin müşteriniz", text: "Panel sizin ya da müşterinizin logosu ve renkleriyle teslim edilir; bizim adımız hiçbir ekranda geçmez. Müşterinizle iletişim sizde kalır." },
+            { title: "Teklife yazabileceğiniz net fiyat", text: "Keşif görüşmesinden sonra 2–3 gün içinde ekran listesi, sabit fiyat ve teslim tarihi. Müşterinize vereceğiniz teklifi bu rakamla rahatça hazırlarsınız." },
+            { title: "Hızlı teslim", text: "Hazır altyapı sayesinde sade bir panel yaklaşık iki haftada, kapsamlısı 2–4 haftada hazır. Her hafta çalışan sürümü birlikte inceliyoruz." },
+            { title: "Teslimden sonra da yanınızda", text: "Kaynak kodu, kurulum dokümanı ve kullanım eğitimi teslimle gelir; ardından 1–3 ay ücretsiz düzeltme desteği. Müşteriniz yeni bir ekran isterse aynı hızla ekleriz." },
+        ],
+    },
+
+    // CONSENT: the cookie banner (js/consent.js)
+    consent: {
+        text: "Reklamlarımızın işe yarayıp yaramadığını ölçmek için Google Ads çerezlerini kullanmak istiyoruz. İzin vermezseniz çerez kullanılmaz.",
+        accept: "Kabul et",
+        reject: "Reddet",
+    },
+
     // HERO:
     hero: {
         eyebrow: "RAPOR EKRANLARI VE YÖNETİM PANELİ",
@@ -310,6 +335,31 @@ TEXTS.en = {
         cta: "Get a Quote",
         open: "Menu",
         close: "Close",
+    },
+
+    // AGENCY: ?for=ajans (translated from the Turkish text)
+    agency: {
+        hero: {
+            eyebrow: "FOR ADVERTISING AGENCIES",
+            title: "A panel for your client, under your brand.",
+            lead: "You built an app or a website for your client; now they want a panel to manage its content, users or reports. We build the panel for you, under your brand (white-label), and you deliver it to your client as your own work. Fixed price, a delivery date in writing.",
+        },
+        eyebrow: "HOW WE WORK WITH AGENCIES",
+        title: "A software partner that fits an agency's schedule",
+        lead: "We know how agency work flows: the client is waiting, the quote must be clear and the delivery date must not slip.",
+        items: [
+            { title: "Your brand, your client", text: "The panel is delivered with your or your client's logo and colors; our name is on no screen. You keep the contact with your client." },
+            { title: "A clear price for your quote", text: "Two or three days after the discovery call: the list of screens, a fixed price and a delivery date. You can prepare your quote to your client with this number." },
+            { title: "Fast delivery", text: "With a ready base, a simple panel is ready in about two weeks, a larger one in 2–4 weeks. We review a working version together every week." },
+            { title: "With you after delivery", text: "The source code, a setup document and training come with the delivery, then 1–3 months of free fixes. When your client asks for a new screen, we add it just as fast." },
+        ],
+    },
+
+    // CONSENT: the cookie banner (js/consent.js)
+    consent: {
+        text: "We would like to use Google Ads cookies to measure whether our ads work. If you do not allow it, no cookie is used.",
+        accept: "Accept",
+        reject: "Decline",
     },
 
     // HERO:

@@ -21,7 +21,8 @@ const HERO_SCREEN_FILES = [
 const HeroSection = function () {
 
     const L = SITE.L;
-    const T = SITE.T.hero;
+    // The address of the ads for agencies (?for=ajans) has its own title and text.
+    const T = (SITE.isAgency) ? Object.assign({}, SITE.T.hero, SITE.T.agency.hero) : SITE.T.hero;
 
     // SECTION: Koyu zeminli açılış
     const strip = SITE.startSection({

@@ -24,6 +24,7 @@ let lastWidth = 0;
 const start = function () {
 
     SITE.lang = loadLanguage();
+    SITE.isAgency = (new URLSearchParams(location.search).get("for") === "ajans"); // The address of the ads for agencies
 
     page.color = SITE.BG;
 
@@ -64,6 +65,7 @@ const buildSite = function (keepSectionKey) {
         });
 
             HeroSection();
+            if (SITE.isAgency) AgencySection();
             StatsSection();
             ServicesSection();
             FeaturesSection();
@@ -89,6 +91,9 @@ const buildSite = function (keepSectionKey) {
     scrollBox.on("scroll", function () {
         header.refreshScrollState(scrollBox.elem.scrollTop);
     });
+
+    // GROUP: Çerez onayı (seçim yapılana kadar, ekranın altında)
+    SiteConsent.createBanner();
 
     // Yeniden kurulumdan sonra, ziyaretçiyi baktığı bölümde tut.
     if (keepSectionKey) {
@@ -117,6 +122,8 @@ const destroySite = function () {
         SITE.formWaiting.remove();
         SITE.formWaiting = null;
     }
+
+    SiteConsent.removeBanner();
 
     if (scrollBox) {
         scrollBox.remove();
