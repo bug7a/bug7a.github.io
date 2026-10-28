@@ -81,9 +81,8 @@ SiteConsent.createButton = function (text, isMain, onClick) {
     btn.elem.style.fontFamily = SITE.BOLD;
     btn.shrink = 0;
     btn.cursor = "pointer";
-    // WHY: setAttribute: the basic.js copy of this site (v26.09.18) has no role / tabIndex / aria props.
-    btn.elem.setAttribute("role", "button");
-    btn.elem.setAttribute("tabindex", "0");
+    btn.role = "button";
+    btn.tabIndex = 0;
     btn.on("click", onClick);
     btn.on("keydown", function (self, event) {
         if (event.key !== "Enter" && event.key !== " ") return;
@@ -103,8 +102,7 @@ SiteConsent.createBanner = function () {
     const MARGIN = 16;
     const width = Math.min(640, page.width - MARGIN * 2);
 
-    // WHY: The banner is kept inside the function: createIn() of this site's basic.js (v26.09.18) returns nothing.
-    createIn(page, function () {
+    SiteConsent.banner = createIn(page, function () {
         const banner = (L.mobile)
             ? VGroup({ width: width, height: "auto", align: "left top", gap: 12, padding: 16 })
             : HGroup({ width: width, height: "auto", align: "left center", gap: 16, padding: [20, 16] });
@@ -116,8 +114,8 @@ SiteConsent.createBanner = function () {
         banner.left = Math.round((page.width - width) / 2);
         banner.bottom = MARGIN;
         banner.zIndex = 1000;
-        banner.elem.setAttribute("role", "dialog");
-        banner.elem.setAttribute("aria-label", T.text);
+        banner.role = "dialog";
+        banner.aria = { label: T.text };
             const lblText = Label({ text: "", fontSize: 14, textColor: SITE.ON_DARK_SOFT });
             lblText.plainText = T.text;
             lblText.elem.style.lineHeight = "1.5";
@@ -129,7 +127,7 @@ SiteConsent.createBanner = function () {
                 SiteConsent.createButton(T.accept, 1, function () { SiteConsent.choose(SiteConsent.GRANTED); });
             endGroup();
         endGroup();
-        SiteConsent.banner = banner;
+        return banner;
     });
 };
 
