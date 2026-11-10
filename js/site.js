@@ -1114,6 +1114,8 @@ Site.createOpenSource = function () {
             gap: 18,
             wrap: 1,
         });
+        // WHY stretch: the cards of a row are as tall as the tallest one, when one name takes two lines
+        Site.osGroup.css = { alignItems: "stretch" };
 
             SITE.openSource.forEach(function (item, index) {
 
@@ -1151,6 +1153,8 @@ Site.createOpenSource = function () {
                         gap: 12,
                         css: { padding: "20px 20px 22px 22px" },
                     });
+                    // WHY grow: in a card made taller by its row, the name and the arrow stay in the middle of the dark part
+                    that.css = { flexGrow: "1" };
 
                         VGroup({ width: "calc(100% - 50px)", height: "auto", align: "left top", gap: 4 });
 

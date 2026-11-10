@@ -158,9 +158,9 @@ const SITE = {
     ],
 
     openSource: [
-        { text: "basic.js — UI Library", image: "img/logo/basicjs.svg", url: "https://bug7a.github.io/basic.js/" },
-        { text: "basic.js — UI Components", image: "img/logo/basicui.svg", url: "https://bug7a.github.io/js-components/" },
-        { text: "basic.js — App Templates", image: "img/logo/basicjs-templates.svg", url: "https://github.com/bug7a/js-components" },
+        { text: "basic.js — UI Core Library", image: "img/logo/basicjs.svg", url: "https://bug7a.github.io/basic.js/" },
+        { text: "OzdenUI — Components", image: "img/logo/ozdenui-components.svg", url: "https://bug7a.github.io/js-components/" },
+        { text: "OzdenUI — App Templates", image: "img/logo/ozdenui-app-templates.svg", url: "https://github.com/bug7a/js-components" },
     ],
 
     // WHY: The address is an image and is written by code, so it is not read by spam robots.
