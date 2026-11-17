@@ -134,6 +134,28 @@ Set-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -RemoteAddress LocalSubnet
 ```
 
 - En sonda **TAMAM** yazmalı. Sonra sohbette "yaptım" de; Claude dışarıya kapalı olduğunu kontrol eder.
+
+---
+
+## OzdenUI penceresini 150 % ölçekte denemek (2026-11-17)
+
+Amaç: Windows'ta yazıları büyük gösteren bir ekranda (125 %, 150 %) OzdenUI penceresinin doğru boyda ve net açıldığını
+görmek. Yönetici gerekmez; ayar sonra geri alınır.
+
+### 1. Ölçeği 150 %'ye al
+
+**Windows + R**'ye bas, şunu yapıştır, Enter:
+
+```text
+ms-settings:display
+```
+
+**Ölçek** kutusundan **150%**'yi seç. Oturumu kapatman gerekmez. Sohbette Claude'a "yaptım" de: Claude pencereyi açıp
+ölçer, resmini alır (ekranda birkaç saniye bir pencere açılıp kapanır).
+
+### 2. Geri al
+
+Claude "bitti" deyince aynı yerden ölçeği eski değerine (**100%**) döndür.
 </script>
 
 <script>
