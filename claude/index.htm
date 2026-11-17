@@ -17,145 +17,35 @@
 # Windows adımları
 
 Claude'un Windows bilgisayar için hazırladığı adımlar. Her kod bloğunun sağ üstündeki **Kopyala** düğmesi kodu kopyalar.
-Bitince sohbette Claude'a "yaptım" de ve istenen bilgileri **sohbete** yaz.
 
-> Bu sayfa herkese açık: buraya şifre, IP adresi ya da kişisel bilgi yazılmaz. Anahtarın yalnız açık (public) kısmı
-> burada; gizli kısmı Mac'te kalır.
+> Bu sayfa herkese açık: buraya şifre, IP adresi ya da kişisel bilgi yazılmaz.
 
 ---
 
-## Windows'a SSH ile bağlanmak (2026-11-17)
+## SSH bağlantısını kapatmak (2026-11-17)
 
-Amaç: Claude, Mac'ten bu bilgisayarda komut çalıştırabilsin, program kurabilsin ve deneme yapabilsin.
+Amaç: Mac'ten bu bilgisayara açılan terminal (SSH) bağlantısını kapatmak. Bundan sonra Claude bu bilgisayarda komut
+çalıştıramaz.
 
 ### 1. PowerShell'i yönetici olarak aç
 
-Başlat menüsüne **PowerShell** yaz, **Windows PowerShell**'e sağ tıkla, **Yönetici olarak çalıştır**. Aşağıdaki
-adımların hepsi bu pencerede yapılır.
+Başlat menüsüne **PowerShell** yaz, **Windows PowerShell**'e sağ tıkla, **Yönetici olarak çalıştır**.
 
-### 2. SSH sunucusunu aç
+### 2. Bu kodu yapıştır, Enter'a bas
 
-Kodu yapıştır, Enter'a bas. İlk satır birkaç dakika sürebilir.
-
-```powershell
-Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
-Start-Service sshd
-Set-Service -Name sshd -StartupType Automatic
-New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -PropertyType String -Force
-if (-not (Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyContinue)) { New-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -DisplayName "OpenSSH Server (sshd)" -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22 }
-```
-
-### 3. Claude'un anahtarını ekle
-
-Bununla Claude şifresiz bağlanır; senin şifren ona hiç gitmez.
+SSH sunucusunu durdurur, bilgisayar açılınca bir daha başlamaz, güvenlik duvarındaki SSH kuralını kapatır ve Claude'un
+anahtarını siler.
 
 ```powershell
-$key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ98w5m7CugyUzWCJk84XCSKZwvZR5JaMREFlxgSLmKr claude-code-mac-to-winpc"
-$adminKeys = "$env:ProgramData\ssh\administrators_authorized_keys"
-Add-Content -Path $adminKeys -Value $key -Encoding ascii
-icacls $adminKeys /inheritance:r /grant "*S-1-5-32-544:F" /grant "*S-1-5-18:F"
-New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.ssh" | Out-Null
-Add-Content -Path "$env:USERPROFILE\.ssh\authorized_keys" -Value $key -Encoding ascii
-```
-
-### 4. Fişe takılıyken uyumasın
-
-```powershell
-powercfg /change standby-timeout-ac 0
-```
-
-### 5. Kontrol et, bilgileri Claude'a gönder
-
-```powershell
+Stop-Service sshd
+Set-Service -Name sshd -StartupType Disabled
+Disable-NetFirewallRule -Name "OpenSSH-Server-In-TCP"
+foreach ($file in "$env:ProgramData\ssh\administrators_authorized_keys", "$env:USERPROFILE\.ssh\authorized_keys") { if (Test-Path $file) { $rest = @(Get-Content $file | Where-Object { $_ -notlike "*claude-code-mac-to-winpc*" }); Set-Content -Path $file -Value $rest -Encoding ascii } }
 Get-Service sshd | Select-Object Status, StartType
-whoami
-hostname
-(Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -notlike "127.*" -and $_.IPAddress -notlike "169.254.*" }).IPAddress
 ```
 
-- İlk satırda **Running** ve **Automatic** görünmeli.
-- Çıkan satırları (kullanıcı adı, bilgisayar adı, IP) sohbette Claude'a yaz, buraya değil.
-- Bir adım hata verirse hatanın metnini de sohbete yapıştır.
-
-### 6. Mac bağlanamadı: güvenlik duvarı (2026-11-17)
-
-Bilgisayar ağda görünüyor, ama Windows güvenlik duvarı gelen bağlantıları düşürüyor. En sık sebebi, ev ağının
-Windows'ta **Ortak (Public)** olarak işaretli olması. Yine **yönetici** PowerShell'de, önce durumu göster:
-
-```powershell
-Get-Service sshd | Select-Object Status, StartType
-Get-NetConnectionProfile | Select-Object Name, InterfaceAlias, NetworkCategory
-Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" | Select-Object Enabled, Profile, Action
-```
-
-Sonra düzelt: ev ağını **Özel (Private)** yapar ve SSH kuralını o ağda açar.
-
-```powershell
-Start-Service sshd
-Get-NetConnectionProfile | Set-NetConnectionProfile -NetworkCategory Private
-Set-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -Enabled True -Profile Private -Action Allow
-```
-
-- İlk kodun çıktısını sohbete yapıştır, sonra "yaptım" de.
-- Bilgisayarda Windows'unkinden başka bir güvenlik programı (Norton, Kaspersky, ESET...) varsa onun da güvenlik
-  duvarı olabilir: adını sohbete yaz.
-
-> Not: PowerShell'de bir kodun içindeki sorgulardan yalnız ilkinin tablosu düzgün yazılır; sonrakiler boş görünebilir.
-> Bu bir hata değil.
-
-### 7. Şifreyle girişi kapat (2026-11-17)
-
-Mac anahtarla bağlanıyor. Bundan sonra ağdaki başka biri SSH'a şifre deneyemesin: SSH yalnız anahtar kabul etsin.
-Yine **yönetici** PowerShell'de:
-
-```powershell
-$config = "$env:ProgramData\ssh\sshd_config"
-Copy-Item $config "$config.yedek" -Force
-(Get-Content $config) -replace '^#?\s*PasswordAuthentication\s.*', 'PasswordAuthentication no' | Set-Content $config -Encoding ascii
-Select-String -Path $config -Pattern '^PasswordAuthentication'
-Restart-Service sshd
-```
-
-- Son satırdan önce `PasswordAuthentication no` yazmalı. Sonra sohbette "yaptım" de; Claude girişin yalnız anahtarla
-  olduğunu kontrol eder.
-- Eski ayar `sshd_config.yedek` olarak durur.
-
-### 8. Yalnız ev ağından, yalnız anahtarla (2026-11-17)
-
-Şifreyle giriş kapandı. Kalan iki açık: SSH "klavyeyle giriş" yöntemini de sunuyor, ve güvenlik duvarı kuralı her adresten
-gelen bağlantıya açık (bilgisayarın internette görünen IPv6 adresleri de var). Bu kod ikisini kapatır: SSH'a yalnız
-ev ağındaki cihazlar ulaşabilir, ve yalnız anahtarla. Yine **yönetici** PowerShell'de:
-
-```powershell
-$config = "$env:ProgramData\ssh\sshd_config"
-if (-not (Select-String -Path $config -Pattern '^KbdInteractiveAuthentication' -Quiet)) { (Get-Content $config) -replace '^PasswordAuthentication no$', "PasswordAuthentication no`r`nKbdInteractiveAuthentication no" | Set-Content $config -Encoding ascii }
-Set-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -RemoteAddress LocalSubnet
-& "$env:WINDIR\System32\OpenSSH\sshd.exe" -t; if ($LASTEXITCODE -eq 0) { Restart-Service sshd; "TAMAM" } else { "AYAR HATALI: SSH yeniden başlatılmadı" }
-```
-
-- En sonda **TAMAM** yazmalı. Sonra sohbette "yaptım" de; Claude dışarıya kapalı olduğunu kontrol eder.
-
----
-
-## OzdenUI penceresini 150 % ölçekte denemek (2026-11-17)
-
-Amaç: Windows'ta yazıları büyük gösteren bir ekranda (125 %, 150 %) OzdenUI penceresinin doğru boyda ve net açıldığını
-görmek. Yönetici gerekmez; ayar sonra geri alınır.
-
-### 1. Ölçeği 150 %'ye al
-
-**Windows + R**'ye bas, şunu yapıştır, Enter:
-
-```text
-ms-settings:display
-```
-
-**Ölçek** kutusundan **150%**'yi seç. Oturumu kapatman gerekmez. Sohbette Claude'a "yaptım" de: Claude pencereyi açıp
-ölçer, resmini alır (ekranda birkaç saniye bir pencere açılıp kapanır).
-
-### 2. Geri al
-
-Claude "bitti" deyince aynı yerden ölçeği eski değerine (**100%**) döndür.
+- En sonda **Stopped** ve **Disabled** görünmeli.
+- Yeniden açmak istersen Claude'a söyle: adımları buraya yazar.
 </script>
 
 <script>
