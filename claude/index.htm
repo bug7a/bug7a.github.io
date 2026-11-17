@@ -99,6 +99,26 @@ Set-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -Enabled True -Profile Private
 - İlk kodun çıktısını sohbete yapıştır, sonra "yaptım" de.
 - Bilgisayarda Windows'unkinden başka bir güvenlik programı (Norton, Kaspersky, ESET...) varsa onun da güvenlik
   duvarı olabilir: adını sohbete yaz.
+
+> Not: PowerShell'de bir kodun içindeki sorgulardan yalnız ilkinin tablosu düzgün yazılır; sonrakiler boş görünebilir.
+> Bu bir hata değil.
+
+### 7. Şifreyle girişi kapat (2026-11-17)
+
+Mac anahtarla bağlanıyor. Bundan sonra ağdaki başka biri SSH'a şifre deneyemesin: SSH yalnız anahtar kabul etsin.
+Yine **yönetici** PowerShell'de:
+
+```powershell
+$config = "$env:ProgramData\ssh\sshd_config"
+Copy-Item $config "$config.yedek" -Force
+(Get-Content $config) -replace '^#?\s*PasswordAuthentication\s.*', 'PasswordAuthentication no' | Set-Content $config -Encoding ascii
+Select-String -Path $config -Pattern '^PasswordAuthentication'
+Restart-Service sshd
+```
+
+- Son satırdan önce `PasswordAuthentication no` yazmalı. Sonra sohbette "yaptım" de; Claude girişin yalnız anahtarla
+  olduğunu kontrol eder.
+- Eski ayar `sshd_config.yedek` olarak durur.
 </script>
 
 <script>
