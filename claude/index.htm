@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
-    <title>Windows adımları</title>
+    <title>Claude'un notları</title>
     <link rel="stylesheet" href="basic/basic.min.css">
     <script src="basic/basic.min.js"></script>
     <script src="basic/scroll-bar.min.js"></script>
@@ -14,38 +14,151 @@
 
 <!-- WHY in the page and not a .md file: GitHub Pages (Jekyll) turns a .md file into HTML, so it could not be read as text. -->
 <script type="text/markdown" id="steps">
-# Windows adımları
+# Claude'un notları
 
-Claude'un Windows bilgisayar için hazırladığı adımlar. Her kod bloğunun sağ üstündeki **Kopyala** düğmesi kodu kopyalar.
+Claude'un hazırladığı notlar ve karşılaştırmalar. Her kod bloğunun sağ üstündeki **Kopyala** düğmesi kodu kopyalar.
 
 > Bu sayfa herkese açık: buraya şifre, IP adresi ya da kişisel bilgi yazılmaz.
 
 ---
 
-## SSH bağlantısını kapatmak (2026-11-17)
+## Kartlar: OzdenUI for Go ile ve klasik Go ile (2026-11-17)
 
-Amaç: Mac'ten bu bilgisayara açılan terminal (SSH) bağlantısını kapatmak. Bundan sonra Claude bu bilgisayarda komut
-çalıştıramaz.
+OzdenUI for Go sitesindeki **"Düz Go ile kendi bileşeniniz"** örneği: `Card` adında bir bileşen (başlık, metin, **Open**
+düğmesi), yan yana üç kart (Sales, Stock, Orders). **Open**'a basınca kartın başlığı "Opened" olur.
 
-### 1. PowerShell'i yönetici olarak aç
+Go'nun kendi pencere kütüphanesi yok. Klasik yol bir kütüphane seçmek: en çok kullanılanı **Fyne**. Aşağıda aynı örnek
+iki yolla yazıldı.
 
-Başlat menüsüne **PowerShell** yaz, **Windows PowerShell**'e sağ tıkla, **Yönetici olarak çalıştır**.
+### 1. OzdenUI for Go ile
 
-### 2. Bu kodu yapıştır, Enter'a bas
+```go
+package main
 
-SSH sunucusunu durdurur, bilgisayar açılınca bir daha başlamaz, güvenlik duvarındaki SSH kuralını kapatır ve Claude'un
-anahtarını siler.
+import ui "github.com/bug7a/ozdenui-go"
 
-```powershell
-Stop-Service sshd
-Set-Service -Name sshd -StartupType Disabled
-Disable-NetFirewallRule -Name "OpenSSH-Server-In-TCP"
-foreach ($file in "$env:ProgramData\ssh\administrators_authorized_keys", "$env:USERPROFILE\.ssh\authorized_keys") { if (Test-Path $file) { $rest = @(Get-Content $file | Where-Object { $_ -notlike "*claude-code-mac-to-winpc*" }); Set-Content -Path $file -Value $rest -Encoding ascii } }
-Get-Service sshd | Select-Object Status, StartType
+// Card is a component of this program: a title, a text and a button.
+type Card struct {
+    Box   *ui.Object
+    title *ui.Object
+}
+
+// NewCard makes a card in the group it is called in.
+func NewCard(title, text string, onOpen func(card *Card)) *Card {
+    card := &Card{}
+    card.Box = ui.VGroup(ui.Props{Width: 220, Height: "auto", Align: "left top",
+        Padding: 16, Gap: 8, Color: "white", Round: 12}, func() {
+        card.title = ui.Label(ui.Props{Text: title, FontSize: 18, Bold: true})
+        ui.Label(ui.Props{Text: text, TextColor: "#5A6270"})
+        ui.SmartButton(ui.SmartButtonProps{LabelText: "Open", OnClick: func() { onOpen(card) }})
+    })
+    return card
+}
+
+// SetTitle changes its title.
+func (card *Card) SetTitle(title string) {
+    card.title.SetText(title)
+}
+
+func main() {
+    ui.Run(start, ui.Window{Title: "Cards", Width: 760, Height: 240})
+}
+
+func start(page *ui.Object) {
+    page.Set("color", "#F4F5F7")
+    ui.HGroup(ui.Props{Gap: 16, Padding: 24, Wrap: true}, func() {
+        for _, name := range []string{"Sales", "Stock", "Orders"} {
+            NewCard(name, "Updated today.", func(card *Card) {
+                card.SetTitle("Opened")
+            })
+        }
+    })
+}
 ```
 
-- En sonda **Stopped** ve **Disabled** görünmeli.
-- Yeniden açmak istersen Claude'a söyle: adımları buraya yazar.
+### 2. Klasik Go ile (Fyne v2.8)
+
+```go
+package main
+
+import (
+    "image/color"
+
+    "fyne.io/fyne/v2"
+    "fyne.io/fyne/v2/app"
+    "fyne.io/fyne/v2/canvas"
+    "fyne.io/fyne/v2/container"
+    "fyne.io/fyne/v2/layout"
+    "fyne.io/fyne/v2/widget"
+)
+
+// Card is a component of this program: a title, a text and a button.
+type Card struct {
+    Box   fyne.CanvasObject
+    title *canvas.Text
+}
+
+// NewCard makes a card; the caller puts card.Box into a container.
+func NewCard(title, text string, onOpen func(card *Card)) *Card {
+    card := &Card{}
+    card.title = canvas.NewText(title, color.Black)
+    card.title.TextSize = 18
+    card.title.TextStyle = fyne.TextStyle{Bold: true}
+    body := canvas.NewText(text, color.NRGBA{R: 0x5A, G: 0x62, B: 0x70, A: 0xFF})
+    button := widget.NewButton("Open", func() { onOpen(card) })
+
+    background := canvas.NewRectangle(color.White)
+    background.CornerRadius = 12
+    content := container.NewVBox(card.title, body, container.NewHBox(button))
+    padded := container.New(layout.NewCustomPaddedLayout(16, 16, 16, 16), content)
+    card.Box = container.NewStack(background, padded)
+    return card
+}
+
+// SetTitle changes its title.
+func (card *Card) SetTitle(title string) {
+    card.title.Text = title
+    card.title.Refresh()
+}
+
+func main() {
+    myApp := app.New()
+    window := myApp.NewWindow("Cards")
+
+    row := container.NewGridWrap(fyne.NewSize(220, 130))
+    for _, name := range []string{"Sales", "Stock", "Orders"} {
+        card := NewCard(name, "Updated today.", func(card *Card) {
+            card.SetTitle("Opened")
+        })
+        row.Add(card.Box)
+    }
+
+    pageColor := canvas.NewRectangle(color.NRGBA{R: 0xF4, G: 0xF5, B: 0xF7, A: 0xFF})
+    padded := container.New(layout.NewCustomPaddedLayout(24, 24, 24, 24), row)
+    window.SetContent(container.NewStack(pageColor, padded))
+    window.Resize(fyne.NewSize(760, 240))
+    window.ShowAndRun()
+}
+```
+
+Çalıştırmak için önce: `go mod init cards`, `go get fyne.io/fyne/v2@latest`, sonra `go run .`
+
+### 3. Karşılaştırma
+
+| | OzdenUI for Go | Fyne |
+|---|---|---|
+| Satır (boş satırlar hariç) | 35 | 51 |
+| Kartın görünüşü | `Color`, `Round`, `Padding`, `Gap`: bir satırda | Bir dikdörtgen, bir iç boşluk düzeni, bir yığın: üç parça |
+| Yan yana dizmek | `HGroup` + `Wrap: true`: kart kendi boyunu alır | `GridWrap`: her hücrenin genişliği ve **yüksekliği** önceden verilir |
+| Başlığı değiştirmek | `SetText()` | `Text` değişir, sonra `Refresh()` çağrılır |
+| Düğme | OzdenUI kitinin `SmartButton`'ı | Fyne temasının düğmesi |
+| Pencereyi kim çizer | Sistemin web görünümü (Windows'ta WebView2) | Fyne kendisi çizer (OpenGL), web görünümü yok |
+| Derlemek için | Windows'ta C derleyicisi gerekmez | Her sistemde C derleyicisi gerekir (cgo) |
+| Telefon | Yok | Android ve iOS da var |
+| Olgunluk | Yeni (v0.2.1) | Yıllardır kullanılıyor, büyük topluluk |
+
+**Kısaca:** Bir arayüzü yazmak OzdenUI ile daha kısa; renk, köşe ve boşluk HTML'deki gibi tek satır. Fyne daha eski ve
+daha geniş (telefon da var), ama görünüş için parçaları elle üst üste koymak gerekiyor.
 </script>
 
 <script>
@@ -73,7 +186,7 @@ const start = function () {
         markdownText: document.getElementById("steps").textContent.trim(),
         copyText: "Kopyala",
         copiedText: "Kopyalandı",
-        ariaLabel: "Windows adımları",
+        ariaLabel: "Claude'un notları",
         style: { box: { color: PAGE_COLOR } },
     });
 };
