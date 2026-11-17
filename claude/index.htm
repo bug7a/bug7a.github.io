@@ -76,6 +76,29 @@ hostname
 - İlk satırda **Running** ve **Automatic** görünmeli.
 - Çıkan satırları (kullanıcı adı, bilgisayar adı, IP) sohbette Claude'a yaz, buraya değil.
 - Bir adım hata verirse hatanın metnini de sohbete yapıştır.
+
+### 6. Mac bağlanamadı: güvenlik duvarı (2026-11-17)
+
+Bilgisayar ağda görünüyor, ama Windows güvenlik duvarı gelen bağlantıları düşürüyor. En sık sebebi, ev ağının
+Windows'ta **Ortak (Public)** olarak işaretli olması. Yine **yönetici** PowerShell'de, önce durumu göster:
+
+```powershell
+Get-Service sshd | Select-Object Status, StartType
+Get-NetConnectionProfile | Select-Object Name, InterfaceAlias, NetworkCategory
+Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" | Select-Object Enabled, Profile, Action
+```
+
+Sonra düzelt: ev ağını **Özel (Private)** yapar ve SSH kuralını o ağda açar.
+
+```powershell
+Start-Service sshd
+Get-NetConnectionProfile | Set-NetConnectionProfile -NetworkCategory Private
+Set-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -Enabled True -Profile Private -Action Allow
+```
+
+- İlk kodun çıktısını sohbete yapıştır, sonra "yaptım" de.
+- Bilgisayarda Windows'unkinden başka bir güvenlik programı (Norton, Kaspersky, ESET...) varsa onun da güvenlik
+  duvarı olabilir: adını sohbete yaz.
 </script>
 
 <script>
