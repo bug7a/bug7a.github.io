@@ -159,6 +159,53 @@ func main() {
 
 **Kısaca:** Bir arayüzü yazmak OzdenUI ile daha kısa; renk, köşe ve boşluk HTML'deki gibi tek satır. Fyne daha eski ve
 daha geniş (telefon da var), ama görünüş için parçaları elle üst üste koymak gerekiyor.
+
+---
+
+## Windows'un içinde izole bir Ubuntu (WSL2) (2026-11-17)
+
+Amaç: Claude, OzdenUI'yi Linux'ta (Ubuntu 24.04) deneyebilsin. Ubuntu, Windows'un kendi özelliği olan WSL2 ile tek
+bir sanal disk dosyasının içinde çalışır: diskteki bölümlere ve Windows'un dosyalarına dokunmaz, tek bir komutla iz
+bırakmadan silinir. Linux pencereleri Windows masaüstünde görünür.
+
+> Bilmen gereken: WSL2, Windows'un altında küçük bir sanallaştırma katmanını (hipervizör) açık tutar. Çoğu oyunda
+> fark edilmez; nadiren bir oyunun hile koruması ya da çok eski bir VirtualBox bundan şikâyet edebilir. Geri almak
+> 3. adımda.
+
+### 1. BIOS'ta sanallaştırmayı aç (SVM)
+
+Şu an kapalı; WSL2 onsuz çalışmaz. Bilgisayarı yeniden başlat, açılırken **Del** (bazı kartlarda **F2**) tuşuna
+basarak BIOS'a gir. AMD işlemcide ayarın adı **SVM Mode**'dur. Genelde şurada: MSI'da **OC → Advanced CPU
+Configuration**, ASUS'ta **Advanced → CPU Configuration**, Gigabyte'ta **Tweaker → Advanced CPU Settings**,
+ASRock'ta **Advanced → CPU Configuration**. **Enabled** yap, **F10** ile kaydedip çık.
+
+### 2. WSL2'yi aç
+
+Windows açılınca Başlat'a **PowerShell** yaz, **Windows PowerShell**'e sağ tıkla, **Yönetici olarak çalıştır**.
+Kodu yapıştır, Enter:
+
+```powershell
+wsl --install --no-distribution
+```
+
+Bitince bilgisayarı **yeniden başlat**. Sonra sohbette Claude'a "yaptım" de. Ubuntu'yu Claude SSH ile kurar, sana
+kullanıcı adı ya da şifre sorulmaz; Linux'un kullanacağı belleği 3 GB ile sınırlar (bilgisayarda 8 GB var).
+
+### 3. Geri almak istersen
+
+Ubuntu'yu silmek (yönetici gerekmez):
+
+```powershell
+wsl --unregister Ubuntu-24.04
+```
+
+WSL'i ve sanallaştırma katmanını tamamen kapatmak: **yönetici** PowerShell'de aşağıdaki kod, sonra yeniden başlat
+(istersen BIOS'ta SVM'yi tekrar **Disabled** yap).
+
+```powershell
+Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -NoRestart
+Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
+```
 </script>
 
 <script>
