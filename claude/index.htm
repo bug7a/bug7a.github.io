@@ -119,6 +119,21 @@ Restart-Service sshd
 - Son satırdan önce `PasswordAuthentication no` yazmalı. Sonra sohbette "yaptım" de; Claude girişin yalnız anahtarla
   olduğunu kontrol eder.
 - Eski ayar `sshd_config.yedek` olarak durur.
+
+### 8. Yalnız ev ağından, yalnız anahtarla (2026-11-17)
+
+7\. adım çalıştı. Kalan iki açık: SSH "klavyeyle giriş" yöntemini de sunuyor, ve güvenlik duvarı kuralı her adresten
+gelen bağlantıya açık (bilgisayarın internette görünen IPv6 adresleri de var). Bu kod ikisini kapatır: SSH'a yalnız
+ev ağındaki cihazlar ulaşabilir, ve yalnız anahtarla. Yine **yönetici** PowerShell'de:
+
+```powershell
+$config = "$env:ProgramData\ssh\sshd_config"
+if (-not (Select-String -Path $config -Pattern '^KbdInteractiveAuthentication' -Quiet)) { (Get-Content $config) -replace '^PasswordAuthentication no$', "PasswordAuthentication no`r`nKbdInteractiveAuthentication no" | Set-Content $config -Encoding ascii }
+Set-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -RemoteAddress LocalSubnet
+& "$env:WINDIR\System32\OpenSSH\sshd.exe" -t; if ($LASTEXITCODE -eq 0) { Restart-Service sshd; "TAMAM" } else { "AYAR HATALI: SSH yeniden başlatılmadı" }
+```
+
+- En sonda **TAMAM** yazmalı. Sonra sohbette "yaptım" de; Claude dışarıya kapalı olduğunu kontrol eder.
 </script>
 
 <script>
