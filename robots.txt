@@ -11,3 +11,5 @@ Sitemap: https://bug7a.github.io/js-components/sitemap.xml
 Sitemap: https://bug7a.github.io/ozdenui-python/sitemap.xml
 Sitemap: https://bug7a.github.io/ozdenui-go/sitemap.xml
 Sitemap: https://bug7a.github.io/ozdenui-ruby/sitemap.xml
+Sitemap: https://bug7a.github.io/javascript-mobile-app-template/sitemap.xml
+Sitemap: https://bug7a.github.io/basic.js-examples/sitemap.xml
