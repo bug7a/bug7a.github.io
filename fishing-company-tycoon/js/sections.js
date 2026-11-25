@@ -139,6 +139,7 @@ Sections.hero = function (params = {}) {
 
             HGroup({ clipContent: 0, width: L.content, height: "auto", gap: 12, align: "center center", wrap: 1, css: { marginTop: "8px" } });
                 SITE.steamButton();
+                if (CONFIG.demoURL) SITE.button({ kind: "glass", icon: "gamepad", text: T.demoButton, url: CONFIG.demoURL });
                 SITE.button({ kind: "glass", icon: "play", text: T.heroVideoButton, onClick: function () { params.onNavClick("video"); } });
             endGroup();
 
@@ -359,7 +360,7 @@ Sections.info = function () {
 
 };
 
-// *** CALL: the last words before the footer: Steam and YouTube
+// *** CALL: the last words before the footer: Steam, the demo and YouTube
 Sections.call = function () {
 
     const L = SITE.L, T = SITE.T;
@@ -382,6 +383,7 @@ Sections.call = function () {
 
             HGroup({ clipContent: 0, width: "100%", height: "auto", gap: 12, align: "center center", wrap: 1 });
                 SITE.steamButton();
+                if (CONFIG.demoURL) SITE.button({ kind: "line", icon: "gamepad", text: T.demoButton, url: CONFIG.demoURL });
                 SITE.button({ kind: "line", icon: "youtube", text: T.youtubeButton, url: CONFIG.youtubeChannelURL });
             endGroup();
         endGroup();

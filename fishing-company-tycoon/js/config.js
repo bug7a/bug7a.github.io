@@ -19,15 +19,17 @@ const CONFIG = {
     // *** GAME:
     gameName: "Fishing Company Tycoon",
     gameSubtitle: "Harbor to Market",
-    studioName: "Ozden Games",
 
     // *** LINKS:
     // "": not known yet. The page shows "coming soon" in their place until they are written here.
     // The Steam page of the game (ex: "https://store.steampowered.com/app/1234560/Fishing_Company_Tycoon/")
-    steamURL: "https://store.steampowered.com/app/5452400/Fishing_Company_Tycoon_Harbor_to_Market/",
+    // (utm: Steamworks > UTM Analytics shows the visits and wishlists that came from this site)
+    steamURL: "https://store.steampowered.com/app/5452400/Fishing_Company_Tycoon_Harbor_to_Market/?utm_source=website&utm_medium=referral&utm_campaign=site",
+    // The free demo in the browser (itch.io). "": no demo button
+    demoURL: "https://bug7a.itch.io/fishing-company-tycoon-demo",
     // The intro video on YouTube (ex: "https://www.youtube.com/watch?v=XXXXXXXXXXX", "https://youtu.be/XXXXXXXXXXX")
     youtubeIntroURL: "https://youtu.be/vra29kgX-7Q",
-    // The YouTube channel of the studio
+    // The YouTube channel
     youtubeChannelURL: "https://www.youtube.com/@ozdengames",
     // The site of the developer (the name in the footer)
     authorName: "Buğra Özden",

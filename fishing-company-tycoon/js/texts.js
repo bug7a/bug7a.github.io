@@ -52,7 +52,8 @@ const TEXTS = {
         heroTagline: "Build a fishing company from a single boat.",
         heroText: "Send your ships to the fishing grounds, truck the catch to the markets that pay the most, research better gear, and grow a fleet that works by itself. A relaxed management game on a living island.",
         heroVideoButton: "Watch the video",
-        heroNote: "In development · PC (Windows) · English and Turkish",
+        demoButton: "Play the free demo",
+        heroNote: "In development · PC (Windows) · English, Turkish, German, Chinese",
 
         // VIDEO
         videoEyebrow: "Watch",
@@ -81,7 +82,7 @@ const TEXTS = {
         factsTitle: "What is in the harbor",
         facts: [
             ["6", "ship types"], ["7", "kinds of trucks"], ["20", "fishing grounds"], ["12", "kinds of fish and seafood"],
-            ["4", "towns with their own prices"], ["10", "technology columns"], ["11", "chapters of tasks"], ["2", "languages: English, Turkish"],
+            ["4", "towns with their own prices"], ["10", "technology columns"], ["11", "chapters of tasks"], ["4", "languages: English, Turkish, German, Chinese"],
         ],
 
         // SCREENSHOTS
@@ -99,7 +100,7 @@ const TEXTS = {
         ],
         pressTitle: "Press kit",
         pressText: "Writing about the game or showing it in a video? The logo, the icon, the key art and the screenshots are in one file. You may use them to write about or show the game.",
-        pressFacts: [["Developer", "Ozden Games"], ["Platform", "PC (Windows), Steam"], ["Status", "In development"], ["Languages", "English, Turkish"]],
+        pressFacts: [["Developer", "Buğra Özden"], ["Platform", "PC (Windows), Steam"], ["Status", "In development"], ["Languages", "English, Turkish, German, Simplified Chinese"]],
         pressButton: "Download the press kit",
         pressSize: "ZIP · 6.8 MB",
 
@@ -109,8 +110,8 @@ const TEXTS = {
         youtubeButton: "YouTube channel",
 
         // FOOTER
-        footerMade: "A game by {author} · Ozden Games", // ({author}: the name with its link, CONFIG.authorURL)
-        footerRights: "© 2026 Ozden Games. All rights reserved.",
+        footerMade: "A game by {author}", // ({author}: the name with its link, CONFIG.authorURL)
+        footerRights: "© 2026 Buğra Özden. All rights reserved.",
         toTop: "Back to top",
     },
 
@@ -128,7 +129,8 @@ const TEXTS = {
         heroTagline: "Tek bir tekneyle bir balıkçılık şirketi kur.",
         heroText: "Gemilerini av sahalarına gönder, balığı en çok para veren pazara kamyonla taşı, daha iyi donanım geliştir ve kendi kendine çalışan bir filo büyüt. Yaşayan bir adada, sakin bir yönetim oyunu.",
         heroVideoButton: "Videoyu izle",
-        heroNote: "Geliştiriliyor · PC (Windows) · İngilizce ve Türkçe",
+        demoButton: "Ücretsiz demoyu oyna",
+        heroNote: "Geliştiriliyor · PC (Windows) · İngilizce, Türkçe, Almanca, Çince",
 
         // VIDEO
         videoEyebrow: "İzle",
@@ -157,7 +159,7 @@ const TEXTS = {
         factsTitle: "Limanda neler var",
         facts: [
             ["6", "gemi türü"], ["7", "çeşit kamyon"], ["20", "av sahası"], ["12", "çeşit balık ve deniz ürünü"],
-            ["4", "kendi fiyatı olan kasaba"], ["10", "teknoloji sütunu"], ["11", "bölüm görev"], ["2", "dil: İngilizce, Türkçe"],
+            ["4", "kendi fiyatı olan kasaba"], ["10", "teknoloji sütunu"], ["11", "bölüm görev"], ["4", "dil: İngilizce, Türkçe, Almanca, Çince"],
         ],
 
         // SCREENSHOTS
@@ -175,7 +177,7 @@ const TEXTS = {
         ],
         pressTitle: "Basın kiti",
         pressText: "Oyun hakkında yazıyor ya da bir videoda gösteriyor musun? Logo, simge, kapak resmi ve ekran görüntüleri tek dosyada. Oyunu anlatmak ve göstermek için kullanabilirsin.",
-        pressFacts: [["Geliştirici", "Ozden Games"], ["Platform", "PC (Windows), Steam"], ["Durum", "Geliştiriliyor"], ["Diller", "İngilizce, Türkçe"]],
+        pressFacts: [["Geliştirici", "Buğra Özden"], ["Platform", "PC (Windows), Steam"], ["Durum", "Geliştiriliyor"], ["Diller", "İngilizce, Türkçe, Almanca, Basitleştirilmiş Çince"]],
         pressButton: "Basın kitini indir",
         pressSize: "ZIP · 6,8 MB",
 
@@ -185,8 +187,8 @@ const TEXTS = {
         youtubeButton: "YouTube kanalı",
 
         // FOOTER
-        footerMade: "{author}'in bir oyunu · Ozden Games",
-        footerRights: "© 2026 Ozden Games. Tüm hakları saklıdır.",
+        footerMade: "{author}'in bir oyunu",
+        footerRights: "© 2026 Buğra Özden. Tüm hakları saklıdır.",
         toTop: "Başa dön",
     },
 

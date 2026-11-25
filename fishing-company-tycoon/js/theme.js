@@ -124,6 +124,7 @@ SITE.ICONS = {
     play: "<path d='M8 5.5v13l10.5-6.5z' fill='currentColor' stroke='none'/>",
     steam: "<circle cx='12' cy='12' r='9.5'/><circle cx='15.5' cy='9' r='2.6'/><circle cx='9' cy='15.2' r='1.8'/><path d='M3 13.2l4.6 1.9M10.6 14.4l3.1-3.4'/>",
     youtube: "<rect x='2.5' y='5.5' width='19' height='13' rx='4'/><path d='M10 9.2v5.6l4.8-2.8z' fill='currentColor' stroke='none'/>",
+    gamepad: "<rect x='2.5' y='7' width='19' height='11' rx='5.5'/><path d='M7.5 12.5h3.5M9.25 10.75v3.5'/><circle cx='15.5' cy='11.3' r='1' fill='currentColor' stroke='none'/><circle cx='17.3' cy='13.7' r='1' fill='currentColor' stroke='none'/>",
     up: "<path d='M6 14l6-6 6 6'/>",
     left: "<path d='M15 5l-7 7 7 7'/>",
     right: "<path d='M9 5l7 7-7 7'/>",
