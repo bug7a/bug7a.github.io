@@ -59,7 +59,7 @@ const CONFIG = {
     formTimeout: 15000, // ms
 
     // *** LANGUAGE:
-    defaultLanguage: "tr", // "tr", "en"
+    defaultLanguage: "en", // "tr", "en": a browser in Turkish still gets "tr" (loadLanguage)
     languageStorageKey: "wap_lang",
 
     // *** SEO:
